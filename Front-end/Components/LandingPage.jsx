@@ -6,7 +6,7 @@ function LandingPage() {
         <div>
             <header className='flex'>
                 <span className='flex logo'>
-                    <img src="../src/assets/Logo.png" alt="" width={160} height={100} />
+                    <img src="../src/assets/Logo.png" alt="Logo" width={160} height={100} />
                     <h1>Sustainify</h1>
                 </span>
                 <span className='nav-btns'>
