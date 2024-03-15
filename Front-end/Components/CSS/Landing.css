@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
 * {
     margin: 0px;
     padding: 0px;
@@ -5,10 +7,12 @@
 }
 
 body {
-    background-image: url("./assets//Background Image.png");
+    background-image: url("./assets/Background Image.png");
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
+    font-family: "Inter", sans-serif;
+
 }
 
 
@@ -20,10 +24,15 @@ body {
 
 .logo {
     margin-top: 1%;
-    margin-left: 5%;
+    margin-left: 3%;
     align-items: center;
     width: 350px;
     /* border: 1px solid red; */
+}
+
+.logo h1 {
+    font-size: 35px;
+    margin-left: 12%;
 }
 
 .nav-btns {
@@ -46,8 +55,9 @@ body {
 }
 
 .container h1 {
-    font-size: 55px;
+    font-size: 50px;
     text-align: center;
+    font-weight: 600;
     margin-top: 1%;
 }
 
@@ -71,11 +81,86 @@ body {
     cursor: pointer;
 }
 
-footer{
+footer {
     text-align: center;
-    margin-top: 5%;
+    margin-top: 3%;
 }
 
-footer span{
+footer span {
     margin-right: -35%;
+}
+
+
+/* STYLING THE SIGN-UP PAGE */
+
+header h1 {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+}
+
+header p {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 1%;
+}
+
+.main{
+    width: 300px;
+    height: max-content;
+    background-color: rgba(61, 136, 41, 1);
+    border-radius: 20px;
+    text-align: center;
+    margin-left: 40%;
+    margin-top: 2%;
+}
+
+.main h1{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.main hr{
+    border: 2px solid white;
+}
+
+
+.inputs{
+    /* border: 1px solid red; */
+    width: 200px;
+    margin-left: 12%;
+    margin-top: 2%;
+    margin-bottom: 3%;
+    text-align: left;
+    font-weight: 600;
+}
+
+.inputs input{
+    width: 230px;
+    height: 30px;
+    color: rgba(61, 136, 41, 1);
+}
+
+.main button{
+    background-color: white;
+    color: rgba(61, 136, 41, 1);
+    border-radius: 20px;
+    width: 100px;
+    height: 30px;
+    margin-top: 5%;
+    margin-bottom: 8%;
+    font-weight: 700;
+}
+
+.main span{
+    text-decoration: underline;
+    cursor: pointer;
+    color:greenyellow;
+}
+
+.errors{
+    width: 250px;
+    color:bisque;
+    font-size: 12px;
+    text-decoration: none;
 }
