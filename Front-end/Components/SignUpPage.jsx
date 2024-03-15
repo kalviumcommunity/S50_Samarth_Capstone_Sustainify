@@ -23,7 +23,7 @@ function SignUpPage() {
                     <div className='inputs'>
                         <label>Name</label>
                         <input type="text" {...register('name', { required: true })} />
-                        {errors.name && <p className='errors'>This field is required</p>}
+                        {errors.name && <p className='errors'>Enter your Name</p>}
                     </div>
                     <div className='inputs'>
                         <label>E-mail</label>
@@ -36,15 +36,15 @@ function SignUpPage() {
                     <div className='inputs'>
                         <label>User Name</label>
                         <input type="text" {...register('userName', { required: true })} />
-                        {errors.userName && <p className='errors'>This field is required</p>}
+                        {errors.userName && <p className='errors'>Enter your User Name</p>}
                     </div>
                     <div className='inputs'>
                         <label>Password</label>
-                       <input type="text" {...register('password', { 
-                           required: true,
-                           pattern: /^(?=.*[0-9])[a-zA-Z0-9]{8,}$/ 
-                       })} />
-                        {errors.password && <p className='errors'>Password must be at least 8 characters long and contain at least one number and special character</p>}
+                        <input type="password" {...register('password', { 
+                            required: true,
+                            minLength: { value: 8, message: "Password must be at least 8 characters long" }
+                        })} />
+                        {errors.password && <p className='errors'>{errors.password.type === "required" ? "Please enter your password" : errors.password.message}</p>}
                     </div>
                     <div>
                         <p>Already a user?
