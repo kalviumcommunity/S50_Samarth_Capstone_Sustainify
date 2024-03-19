@@ -10,44 +10,37 @@ body {
     background-image: url("./assets/Background Image.png");
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
     color: white;
     font-family: "Inter", sans-serif;
-
 }
 
 
 .flex {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
 .logo {
-    margin-top: 1%;
     margin-left: 3%;
     align-items: center;
     width: 350px;
+    cursor: pointer;
     /* border: 1px solid red; */
 }
 
-.logo h1 {
-    font-size: 35px;
-    margin-left: 12%;
-}
 
 .nav-btns {
     /* border: 1px solid red; */
-    width: 1000px;
-    margin-left: 7%;
+    width: 700px;
 }
 
 .nav-btns button {
     margin: 0% 2%;
     align-items: center;
-    padding: 8px 22px;
     border-radius: 30px;
     border: none;
-    background-color: rgba(232, 102, 19, 1);
     color: white;
     font-weight: 400;
     font-size: large;
@@ -59,6 +52,7 @@ body {
     text-align: center;
     font-weight: 600;
     margin-top: 1%;
+    color: greenyellow;
 }
 
 .container p {
@@ -69,9 +63,9 @@ body {
 }
 
 .container button {
-    background-color: rgba(232, 101, 19, 0.500);
-    color: white;
-    border: 3px solid rgba(232, 102, 19, 1);
+    /* background-color: rgba(232, 101, 19, 0.500); */
+    color: white ;
+    border: 3px solid rgba(61, 136, 41, 1);
     padding: 6px;
     border-radius: 10px;
     font-weight: 400;
@@ -81,13 +75,9 @@ body {
     cursor: pointer;
 }
 
-footer {
-    text-align: center;
-    margin-top: 3%;
-}
-
-footer span {
-    margin-right: -35%;
+.container button:hover{
+    border: 3px solid white;
+    color: greenyellow;
 }
 
 
@@ -111,7 +101,7 @@ header p {
     background-color: rgba(61, 136, 41, 1);
     border-radius: 20px;
     text-align: center;
-    margin-left: 40%;
+    margin-left: 39%;
     margin-top: 2%;
 }
 
@@ -163,4 +153,18 @@ header p {
     color:bisque;
     font-size: 12px;
     text-decoration: none;
+}
+
+
+/* LOG-IN PAGE STYLING */
+.log-In{
+    width: 100vw;
+    height: 80vh;
+}
+.log-header{
+    margin-top: 2%;
+    margin-bottom: 6%;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center  ;
 }
