@@ -1,13 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import '../src/index.css';
+import './CSS/Landing.css';
+import axios from 'axios';
 
 function SignUpPage() {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate();
 
-    const onSubmit = (data) => {
-        alert("Welcome to Sustainify, You are Signed up as a Member.");
+    const onSubmit = async (data) => {
+        try {
+            const response = await axios.post("http://localhost:2001/user", data);
+            console.log(response.data);
+            navigate('/');
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -27,9 +35,9 @@ function SignUpPage() {
                     </div>
                     <div className='inputs'>
                         <label>E-mail</label>
-                        <input type="text" {...register('email', { 
+                        <input type="text" {...register('email', {
                             required: true,
-                            pattern: /^\S+@\S+$/i 
+                            pattern: /^\S+@\S+$/i
                         })} />
                         {errors.email && <p className='errors'>Enter a valid email</p>}
                     </div>
@@ -40,7 +48,7 @@ function SignUpPage() {
                     </div>
                     <div className='inputs'>
                         <label>Password</label>
-                        <input type="password" {...register('password', { 
+                        <input type="password" {...register('password', {
                             required: true,
                             minLength: { value: 8, message: "Password must be at least 8 characters long" }
                         })} />
