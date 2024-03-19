@@ -8,18 +8,14 @@ function SignUpPage() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
 
-    const onSubmit = (data) => {
-        axios.post("http://localhost:2001/user", data)
-            .then(res => {
-                console.log(res.data)
-                const user = res.data
-                console.log("User", user)
-                navigate('/')
-            })
-            .catch(err => {
-                console.log(err)
-            })
-            console.log(data)
+    const onSubmit = async (data) => {
+        try {
+            const response = await axios.post("http://localhost:2001/user", data);
+            console.log(response.data);
+            navigate('/');
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
