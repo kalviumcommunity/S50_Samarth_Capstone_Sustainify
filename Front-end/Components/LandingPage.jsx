@@ -5,22 +5,32 @@ import { Link } from 'react-router-dom';
 
 function LandingPage() {
     return (
-        <div>
+        <div className='background-image'>
+
+            {/* HEADER */}
+            
             <header className='flex'>
                 <span className='logo'>
                     <img src="../src/assets/Logo.png" alt="Logo" width={150} />
                 </span>
                 <span className='nav-btns'>
-                    <button>News</button>
+                    <Link to={'/news'}>
+                        <button>News</button>
+                    </Link>
                     <button>Posts</button>
                     <button>Products</button>
                     <button>Videos</button>
-                    <button>Contact Us</button>
+                    <Link to={'/contact'}>
+                        <button>Contact Us</button>
+                    </Link>
                     <Link to={'/signUp'}>
                         <button>Sign In</button>
                     </Link>
                 </span>
             </header>
+
+            {/* MAIN CONTAINER  */}
+            
             <div className='container'>
                 <h1>Sustainify</h1>
                 <p>Sustainify offers a streamlined solution for eco-conscious living, providing personalized sustainability tips,

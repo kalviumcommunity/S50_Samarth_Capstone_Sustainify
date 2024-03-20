@@ -6,11 +6,11 @@
     box-sizing: border-box;
 }
 
-body {
+.background-image {
     background-image: url("./assets/Background Image.png");
-    background-repeat: no-repeat;
-    background-size: cover;
     background-position: center;
+    background-size: cover;
+    height: 100vh;
     color: white;
     font-family: "Inter", sans-serif;
 }
@@ -33,25 +33,32 @@ body {
 
 .nav-btns {
     /* border: 1px solid red; */
-    width: 700px;
+    width: 780px;
 }
 
 .nav-btns button {
     margin: 0% 2%;
     align-items: center;
-    border-radius: 30px;
     border: none;
     color: white;
     font-weight: 400;
     font-size: large;
     cursor: pointer;
+    padding: 0% 1.5%;
+
+}
+
+.nav-btns button:hover {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0% 1.45%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
 }
 
 .container h1 {
-    font-size: 50px;
+    font-size: 60px;
     text-align: center;
     font-weight: 600;
-    margin-top: 1%;
+    margin-top: 3%;
     color: greenyellow;
 }
 
@@ -64,7 +71,7 @@ body {
 
 .container button {
     /* background-color: rgba(232, 101, 19, 0.500); */
-    color: white ;
+    color: white;
     border: 3px solid rgba(61, 136, 41, 1);
     padding: 6px;
     border-radius: 10px;
@@ -73,11 +80,13 @@ body {
     margin-left: 42%;
     margin-top: 1%;
     cursor: pointer;
+    transition: border-color 0.3s, color 0.3s, background-color 0.3s;
 }
 
-.container button:hover{
-    border: 3px solid white;
+.container button:hover {
+    border-color: white;
     color: greenyellow;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 
@@ -95,7 +104,7 @@ header p {
     margin-top: 1%;
 }
 
-.main{
+.main {
     width: 300px;
     height: max-content;
     background-color: rgba(61, 136, 41, 1);
@@ -105,17 +114,17 @@ header p {
     margin-top: 2%;
 }
 
-.main h1{
+.main h1 {
     font-size: 30px;
     font-weight: bold;
 }
 
-.main hr{
+.main hr {
     border: 2px solid white;
 }
 
 
-.inputs{
+.inputs {
     /* border: 1px solid red; */
     width: 200px;
     margin-left: 12%;
@@ -125,13 +134,13 @@ header p {
     font-weight: 600;
 }
 
-.inputs input{
+.inputs input {
     width: 230px;
     height: 30px;
     color: rgba(61, 136, 41, 1);
 }
 
-.main button{
+.main button {
     background-color: white;
     color: rgba(61, 136, 41, 1);
     border-radius: 20px;
@@ -142,29 +151,25 @@ header p {
     font-weight: 700;
 }
 
-.main span{
+.main span {
     text-decoration: underline;
     cursor: pointer;
-    color:greenyellow;
+    color: greenyellow;
 }
 
-.errors{
+.errors {
     width: 250px;
-    color:bisque;
+    color: bisque;
     font-size: 12px;
     text-decoration: none;
 }
 
 
 /* LOG-IN PAGE STYLING */
-.log-In{
-    width: 100vw;
-    height: 80vh;
-}
-.log-header{
-    margin-top: 2%;
+.log-header {
+    padding-top: 3%;
     margin-bottom: 6%;
     font-size: 30px;
     font-weight: 600;
-    text-align: center  ;
+    text-align: center;
 }

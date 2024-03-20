@@ -19,11 +19,17 @@ function SignUpPage() {
     };
 
     return (
-        <div>
+        <div className='background-image' >
+
+            {/* HEADER */}
+
             <header>
                 <h1>Sign-Up</h1>
                 <p>Join us in weaving a greener future—where every step you take leaves the world a little brighter. <br />Sign up and become part of the change!</p>
             </header>
+
+            {/* MAIN CONTAINER  */}
+            
             <div className='main'>
                 <h1>Sign-Up</h1>
                 <hr />
