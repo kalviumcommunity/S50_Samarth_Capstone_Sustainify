@@ -26,10 +26,16 @@ function LogInPage() {
     };
 
     return (
-        <div className='log-In'>
+        <div className='background-image'>
+
+            {/* HEADER  */}
+            
             <div className='log-header'>
                 <h1>Welcome Back <br />Continuing the Journey: Together Towards a Greener Future!</h1>
             </div>
+
+            {/* MAIN CONTAINER  */}
+            
             <form className='main' onSubmit={handleSubmit}>
                 <h1>Log-In</h1>
                 <hr />

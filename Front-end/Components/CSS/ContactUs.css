@@ -1,0 +1,30 @@
+.bg {
+    background-image: linear-gradient(to right top, rgb(93, 242, 105), #1d5d26);
+}
+
+.con-bg {
+    background-color: rgb(27, 188, 40);
+    color: white;
+    width: 350px;
+    border-radius: 15px;
+    margin-top: 5%;
+    padding: 5%;
+
+}
+
+.con-flex {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.head{
+    font-size: 35px;
+    margin-top: 5%;
+    font-weight: 700;
+    color: rgb(19, 111, 27);
+}
+
+.left textarea{
+    width: 230px;
+}
