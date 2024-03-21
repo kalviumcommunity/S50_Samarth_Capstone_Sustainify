@@ -18,13 +18,17 @@ router.get('/', async (req, res) =>{
 // POST Request 
 router.post('/', async (req,res) => {
 
-    const postData = {
-        img: req.body.img,
-        title: req.body.title,
-        description: req.body.description
+    if (!img || !title || !description) {
+        return res.status(400).json({ message: "All fields are required" });
     }
 
     try{
+        const postData = {
+            img: req.body.img,
+            title: req.body.title,
+            description: req.body.description
+        }
+        
         const data = await posts.create(postData)
         res.status(200).json(data);
     }
