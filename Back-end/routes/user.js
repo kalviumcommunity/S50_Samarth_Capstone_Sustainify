@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcryptjs'); 
+const bcrypt = require('bcryptjs');
 const user = require("../models/userDB.js");
 
 // GET Request
@@ -8,7 +8,8 @@ router.get('/', async (req, res) => {
     try {
         const data = await user.find();
         res.status(200).json(data);
-    } catch (err) {
+    }
+    catch (err) {
         res.status(500).json({ message: err.message });
     }
 });
@@ -21,14 +22,16 @@ router.post('/login', async (req, res) => {
         if (foundUser) {
             const checkPass = await bcrypt.compare(password, foundUser.password);
             if (checkPass) {
-                res.json('success'); 
+                res.json('success');
             } else {
-                res.json('the password is incorrect'); 
+                res.json('the password is incorrect');
             }
-        } else {
-            res.json('no user exists'); 
         }
-    } catch (err) {
+        else {
+            res.json('no user exists');
+        }
+    }
+    catch (err) {
         res.status(500).json({ message: err.message });
     }
 });
@@ -42,12 +45,13 @@ router.post('/', async (req, res) => {
             name: req.body.name,
             email: req.body.email,
             userName: req.body.userName,
-            password: hashedPassword 
+            password: hashedPassword
         };
 
         const data = await user.create(userData);
         res.status(200).json(data);
-    } catch (error) {
+    }
+    catch (error) {
         res.status(400).json({ message: error.message });
     }
 });

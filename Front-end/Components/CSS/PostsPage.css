@@ -1,0 +1,80 @@
+.post-head{
+    font-size: 35px;
+    color: rgb(29, 93, 38);
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1%;
+}
+
+.flex-post{
+    display: flex;
+    justify-content: space-between;
+    width: 185vh;
+}
+
+.logo-post{
+    width: 200px;
+}
+
+.flex-coln{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    padding: 2%;
+    text-align: center;
+    height: 100vh;
+    position: sticky;
+    top: 0px;
+    left: 0px;
+}
+
+.flex-coln button{
+    margin-top: 15%;
+    padding-top: 10%;
+}
+
+.card-post{
+    width: 800px;
+}
+
+.flex-card{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.card-data{
+    padding: 2%;
+}
+
+.card-data h2{
+    font-weight: 700;
+    font-size: 25px;
+}
+
+.like button{
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-top: 10px; 
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative;
+    left: 90%;
+}
+
+.like button:hover{
+    background-color: white;
+    border: 1px solid red;
+    color: red;
+    font-weight: 700;
+}
+
+.like button:active{
+    background-color: red;
+    color: white;
+}

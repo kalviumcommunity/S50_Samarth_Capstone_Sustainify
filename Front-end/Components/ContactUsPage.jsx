@@ -21,7 +21,9 @@ function ContactUsPage() {
                         <Link to={'/news'} >
                             <button>News</button>
                         </Link>
-                        <button>Posts</button>
+                        <Link to={'/posts'}>
+                            <button>Posts</button>
+                        </Link>
                         <button>Products</button>
                         <button>Videos</button>
                         <Link to={'/signUp'}>
@@ -57,9 +59,9 @@ function ContactUsPage() {
                     <div className='right'>
                         <h1 className='head'>Credits</h1>
                         <div className='con-bg'>
-                        <p>Sustainify is a website who's sole motive is to create awareness among the people of Sustainible living preserve the environment for the future 
-                            generations, thsi means using the natural resources without affecting the amount of natural resources required for the future.
-                        </p>
+                            <p>Sustainify is a website who's sole motive is to create awareness among the people of Sustainible living preserve the environment for the future
+                                generations, thsi means using the natural resources without affecting the amount of natural resources required for the future.
+                            </p>
                         </div>
                     </div>
                 </div>
