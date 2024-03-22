@@ -6,6 +6,7 @@ import NewsPage from '../Components/NewsPage'
 import LogInPage from '../Components/LogInPage'
 import ContactUsPage from '../Components/ContactUsPage'
 import PostsPage from '../Components/PostsPage'
+import NewPost from '../Components/NewPost'
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path='/logIn' element={ <LogInPage /> }/>
         <Route path='/contact' element={<ContactUsPage />} />
         <Route path='/posts' element={<PostsPage />}  />
+        <Route path='/newPost' element={<NewPost />} />
       </Routes>
     </Router>
     </div>
