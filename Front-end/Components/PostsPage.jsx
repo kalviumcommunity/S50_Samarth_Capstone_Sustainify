@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import './CSS/PostsPage.css'
+import NewPost from './NewPost';
 
 
 function PostsPage() {
     const [posts, setPosts] = useState([]);
+    const [showModal, setModal] = useState(false)
 
 
     useEffect(() => {
@@ -43,9 +45,7 @@ function PostsPage() {
                             <Link to={'/contact'} >
                                 <button>Contact Us</button>
                             </Link>
-                            <Link to={'/signUp'}>
-                                <button>New Post</button>
-                            </Link>
+                                <button onClick={() => setModal(true)}>New Post</button>
                         </span>
                     </header>
                 </div>
@@ -73,6 +73,10 @@ function PostsPage() {
                         ))}
                     </div>
                 </div>
+
+                {/* NEW POST MODAL  */}
+                {showModal && <NewPost onClose={ () => setModal(false) }/>}
+
             </div>
         </>
     )
