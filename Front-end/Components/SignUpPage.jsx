@@ -8,6 +8,8 @@ function SignUpPage() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
 
+    
+    // SUBMITTING THE FORM AND SAVING IN THE DATABASE 
     const onSubmit = async (data) => {
         try {
             const response = await axios.post("http://localhost:2001/user", data);

@@ -137,7 +137,7 @@ header p {
 .inputs input {
     width: 230px;
     height: 30px;
-    color: rgba(61, 136, 41, 1);
+    color: black;
 }
 
 .main button {

@@ -15,6 +15,8 @@
 
 .logo-post{
     width: 200px;
+    height: fit-content;
+    margin-left: 10%;
 }
 
 .flex-coln{
@@ -44,8 +46,13 @@
     align-items: center;
 }
 
+.flex-card img{
+    width: 600px;
+}
+
 .card-data{
     padding: 2%;
+    width: 1200px;
 }
 
 .card-data h2{

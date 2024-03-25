@@ -11,6 +11,8 @@ function LogInPage() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        // POST REQUEST FOR CHECKING WHETHER THE USER IS A MEMBER OF THE WEBSITE OR NO 
         axios.post('http://localhost:2001/user/login', { userName, password })
             .then(res => {
                 if (res.data === 'success') {

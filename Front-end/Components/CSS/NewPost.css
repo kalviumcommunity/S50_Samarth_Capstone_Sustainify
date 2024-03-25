@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+
+
 .modal {
     position: fixed;
     top: 0;
@@ -10,6 +14,7 @@
     justify-content: center;
     align-items: center;
     color: white;
+    font-family: "Inter", sans-serif;
 }
 
 .modal-full {
@@ -17,7 +22,7 @@
     flex-direction: column;
     gap: 5%;
     width: 400px;
-    height: 440px;
+    height: 460px;
     border-radius: 20px;
 }
 
@@ -41,10 +46,10 @@
 }
 
 .modal-btns button {
-    padding: 1% 4%;
-    margin: 0% 5%;
+    padding: 1% 8%;
+    margin: 2% 5%;
     font-weight: 600;
-    left: 90px;
+    left:30px;
     border-radius: 10px;
 }
 
@@ -54,6 +59,18 @@
 
 .modal-btns button:last-child {
     background-color: rgb(45, 45, 250);
+}
+
+.option input{
+    margin-left: 5%;
+}
+
+.inputs textarea{
+    color: black;
+}
+
+.colr{
+    color: white;
 }
 
 @media (max-width: 700px) {

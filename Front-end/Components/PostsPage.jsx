@@ -8,8 +8,16 @@ import NewPost from './NewPost';
 function PostsPage() {
     const [posts, setPosts] = useState([]);
     const [showModal, setModal] = useState(false)
+    const [likes, setLike] = useState(0);
+
+    
+    // CODE FOR INCREASING THE LIKE COUNTER FOR THE POSTS 
+    const increse = () => {
+        setLike(likes + 1)
+    }
 
 
+    // CODE TO GET DATA FROM THE DATA AND STORING IN STATE USING useState()
     useEffect(() => {
         axios.get('http://localhost:2001/post')
             .then(
@@ -45,7 +53,7 @@ function PostsPage() {
                             <Link to={'/contact'} >
                                 <button>Contact Us</button>
                             </Link>
-                                <button onClick={() => setModal(true)}>New Post</button>
+                            <button onClick={() => setModal(true)}>New Post</button>
                         </span>
                     </header>
                 </div>
@@ -56,26 +64,27 @@ function PostsPage() {
                     <h1 className='post-head' >Community</h1>
                     <div className='posts-flex'>
                         {posts && posts.map((data, index) => (
-                            <div className='main-post '>
+                            <div className='main-post ' key={index}>
                                 <div className='card card-post'>
                                     <div className='flex-card'>
-                                        <span><img src={data.img} alt="Image" width={'600px'}/></span>
+                                        <span><img src={data.img} alt="Image" width={'600px'} /></span>
                                         <span className='card-data'>
                                             <h2>{data.title}</h2><br />
                                             <p>{data.description}</p>
                                         </span>
                                     </div>
                                     <div className='like'>
-                                        <button >Like♡</button>
+                                        <button onClick={increse} >Like♡ {likes}</button>
                                     </div>
                                 </div>
                             </div>
                         ))}
+
                     </div>
                 </div>
 
                 {/* NEW POST MODAL  */}
-                {showModal && <NewPost onClose={ () => setModal(false) }/>}
+                {showModal && <NewPost onClose={() => setModal(false)} />}
 
             </div>
         </>
