@@ -1,5 +1,5 @@
 .news-header {
-    background-image: linear-gradient(to right top, rgb(93, 242, 105), rgb(29, 93, 38));
+    background-image: linear-gradient(to right top, white, rgba(0, 0, 0, 0.5));
     color: black;
 }
 
@@ -17,7 +17,7 @@
     margin: 20px;
     border-radius: 10px;
     transition: box-shadow 0.3s ease;
-    background-color: rgb(93, 242, 105); 
+    background-color: wheat; 
 }
 
 .card:hover {

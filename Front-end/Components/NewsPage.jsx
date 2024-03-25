@@ -9,6 +9,8 @@ function NewsPage() {
   const defaultURL="https://lh3.googleusercontent.com/J6_coFbogxhRI9iM864NL_liGXvsQp2AupsKei7z0cNNfDvGUmWUy20nuUhkREQyrpY4bEeIBuc=s0-w300-rw"
   const defaultText = "Click on read more to read more"
 
+
+// FETCHING DATA FROM THE API AND THEN STORING IN STATE 
   const fecthData = async () => {
     let res = await fetch("https://newsapi.org/v2/top-headlines?country=in&apiKey=32ea84c3ad124191883db3dba95886e0")
     let data = await res.json()
@@ -54,10 +56,10 @@ function NewsPage() {
         <h1 className='latest'>Todays Latest news</h1>
         <div className='news'>
           {
-            news.map((ele) => {
+           news && news.map((ele,index) => {
               return (
                 <>
-                  <div className='card' key={ele.id} >
+                  <div className='card' key={index} >
                     <img src={!ele.urlToImage ? defaultURL : ele.urlToImage} alt="here is the img" />
                     <div className='card-body' >
                       <h3 className='card-title'>{ele.title}</h3>
