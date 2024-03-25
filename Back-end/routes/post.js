@@ -19,6 +19,11 @@ router.get('/', async (req, res) =>{
 router.post('/', async (req,res) => {
 
     try{
+
+        if (!req.body.img || !req.body.title || !req.body.description) {
+            return res.status(400).json({ message: "Missing required fields" });
+        }
+        
         const postData = {
             img: req.body.img,
             title: req.body.title,
