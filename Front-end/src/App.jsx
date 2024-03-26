@@ -7,6 +7,7 @@ import LogInPage from '../Components/LogInPage'
 import ContactUsPage from '../Components/ContactUsPage'
 import PostsPage from '../Components/PostsPage'
 import NewPost from '../Components/NewPost'
+import ProfilePage from '../Components/ProfilePage'
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path='/contact' element={<ContactUsPage />} />
         <Route path='/posts' element={<PostsPage />}  />
         <Route path='/newPost' element={<NewPost />} />
+        <Route path='/profile' element={<ProfilePage />} />
       </Routes>
     </Router>
     </div>
