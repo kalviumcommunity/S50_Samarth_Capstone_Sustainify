@@ -19,8 +19,14 @@ router.get('/', async (req, res) => {
 
 
 // FUNCTION TO GENERATE TOKENS
-const generateToken = (user) =>{
-    return jwt.sign(user.toJSON(), secretCode)
+const generateToken = (data) => {
+    try {
+        const token = jwt.sign(data.toJSON(), secretCode);
+        return token;
+    } 
+    catch (error) {
+        console.error('Token generation failed:', error);
+    }
 }
 
 // Login Request
@@ -59,7 +65,7 @@ router.post('/', async (req, res) => {
 
         const data = await user.create(userData);
         const token = generateToken(data);
-        res.status(200).json({user: data, token: token});
+        res.status(200).json({ user: data, token: token });
     }
     catch (error) {
         res.status(400).json({ message: error.message });
