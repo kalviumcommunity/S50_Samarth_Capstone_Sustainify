@@ -41,11 +41,11 @@ function NewsPage() {
             </Link>
             <button>Products</button>
             <button>Videos</button>
+            <Link to={'/profile'}>
+              <button>Profile</button>
+            </Link>
             <Link to={'/contact'} >
               <button>Contact Us</button>
-            </Link>
-            <Link to={'/signUp'}>
-              <button>Sign In</button>
             </Link>
           </span>
         </header>

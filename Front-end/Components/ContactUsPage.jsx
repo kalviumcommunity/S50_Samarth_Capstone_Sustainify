@@ -27,7 +27,7 @@ function ContactUsPage() {
                         <button>Products</button>
                         <button>Videos</button>
                         <Link to={'/signUp'}>
-                            <button>Sign In</button>
+                            <button>Profile</button>
                         </Link>
                     </span>
                 </header>

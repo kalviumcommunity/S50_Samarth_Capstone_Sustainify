@@ -3,18 +3,25 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import './CSS/Landing.css';
 import axios from 'axios';
+import Cookies from 'js-cookies';
+
 
 function SignUpPage() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
 
-    
+
     // SUBMITTING THE FORM AND SAVING IN THE DATABASE 
     const onSubmit = async (data) => {
         try {
-            const response = await axios.post("http://localhost:2001/user", data);
-            console.log(response.data);
-            navigate('/');
+            axios.post("http://localhost:2001/user", data)
+                .then(res => {
+                    console.log(res.data)
+                    const { token } = res.data;
+                    Cookies.setItem("token", token)
+                    alert("Welcome to Sustainify. Let's look at the Latest news around the world")
+                })
+            navigate('/news');
         } catch (error) {
             console.log(error);
         }
@@ -31,7 +38,7 @@ function SignUpPage() {
             </header>
 
             {/* MAIN CONTAINER  */}
-            
+
             <div className='main'>
                 <h1>Sign-Up</h1>
                 <hr />
@@ -69,7 +76,12 @@ function SignUpPage() {
                             </Link>
                         </p>
                     </div>
-                    <button type="submit">Sign-Up</button>
+                    <div className='flex-around'>
+                        <Link to={'/'}>
+                            <button>Back</button>
+                        </Link>
+                        <button type="submit">Sign-Up</button>
+                    </div>
                 </form>
             </div>
         </div>

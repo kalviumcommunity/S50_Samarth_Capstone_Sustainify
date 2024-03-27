@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const user = require("../models/userDB.js");
+const jwt = require('jsonwebtoken')
+const secretCode = process.env.SECRET_CODE;
+
 
 // GET Request
 router.get('/', async (req, res) => {
@@ -13,6 +16,12 @@ router.get('/', async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
+
+
+// FUNCTION TO GENERATE TOKENS
+const generateToken = (user) =>{
+    return jwt.sign(user.toJSON(), secretCode)
+}
 
 // Login Request
 router.post('/login', async (req, res) => {
@@ -49,7 +58,8 @@ router.post('/', async (req, res) => {
         };
 
         const data = await user.create(userData);
-        res.status(200).json(data);
+        const token = generateToken(data);
+        res.status(200).json({user: data, token: token});
     }
     catch (error) {
         res.status(400).json({ message: error.message });

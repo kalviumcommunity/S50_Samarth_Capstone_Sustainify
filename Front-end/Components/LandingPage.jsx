@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './CSS/Landing.css'
 import { Link } from 'react-router-dom';
-
+import Cookies from 'js-cookies'
 
 function LandingPage() {
+    const [login, setlogin] = useState(false);
+
+    useEffect(() => {
+        const token = Cookies.getItem('token')
+
+        if (token) {
+            setlogin(true);
+        }
+        else {
+            setlogin(false);
+        }
+    })
+
     return (
         <div className='background-image'>
 
@@ -25,9 +38,17 @@ function LandingPage() {
                     <Link to={'/contact'}>
                         <button>Contact Us</button>
                     </Link>
-                    <Link to={'/signUp'}>
-                        <button>Sign In</button>
-                    </Link>
+                    {login ?
+                        <Link to={'/profile'}>
+                            <button>Profile</button>
+                        </Link>
+                        :
+                        <Link to={'/signUp'}>
+                            <button>Sign In</button>
+                        </Link>
+                    }
+
+
                 </span>
             </header>
 
@@ -39,9 +60,16 @@ function LandingPage() {
                     access to eco-friendly products, and a community of environmental enthusiasts. It centralizes resources and education,
                     helping individuals easily navigate their journey towards a more sustainable lifestyle, uniting intention with action
                     in environmental stewardship.</p>
-                <Link to={'/news'}>
-                    <button>Let's be the Change →</button>
-                </Link>
+                {login ?
+                    <Link to={'/news'}>
+                        <button>Let's be the Change →</button>
+                    </Link>
+                    :
+                    <Link to={'/signUp'}>
+                        <button>Let's be the Change →</button>
+                    </Link>
+                }
+
             </div>
         </div>
     )
