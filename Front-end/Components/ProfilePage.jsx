@@ -1,9 +1,17 @@
 import React from 'react'
 import './CSS/Profile.css'
-import { FilePenLine } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Cookie, FilePenLine, LogOut } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookies'
 
 function ProfilePage() {
+    const navigate = useNavigate();
+
+    const deleteToken = () => {
+        Cookies.removeItem('token')
+        alert("Logged-Out Successfully.")
+        navigate('/')
+    }
     return (
         <>
             <div className='bg profile-bg'>
@@ -43,7 +51,6 @@ function ProfilePage() {
                     </div>
                 </div>
 
-
                 <div className='right-profile'>
                     <div className='top-right'>
                         <h1>Information</h1>
@@ -68,6 +75,10 @@ function ProfilePage() {
                             <h2>Bio</h2>
                             <p>Your bio goes here</p>
                         </div>
+                    </div>
+                    <div className='flex log-out'>
+                        <button onClick={deleteToken}>Log out </button>
+                        <LogOut />
                     </div>
                 </div>
             </div>

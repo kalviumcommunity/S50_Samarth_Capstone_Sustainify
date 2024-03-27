@@ -51,7 +51,7 @@
 .nav-btns button:hover {
     border: 1px solid rgba(0, 0, 0, 0.1);
     padding: 0% 1.45%;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .container h1 {
@@ -164,6 +164,15 @@ header p {
     text-decoration: none;
 }
 
+.flex-around {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.flex-around button:first-child {
+    margin-top: -1%;
+}
 
 /* LOG-IN PAGE STYLING */
 .log-header {

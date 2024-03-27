@@ -50,8 +50,8 @@ function PostsPage() {
                             <Link>
                                 <button>Videos</button>
                             </Link>
-                            <Link to={'/contact'} >
-                                <button>Contact Us</button>
+                            <Link to={'/profile'} >
+                                <button>Profile</button>
                             </Link>
                             <button onClick={() => setModal(true)}>New Post</button>
                         </span>

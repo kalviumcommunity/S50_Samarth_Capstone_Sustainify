@@ -46,13 +46,13 @@
     padding-left: 10%;
     text-align: center;
     margin-top: 10%;
-    
+
 }
 
 .right-profile {
     /* border: 1px solid red; */
     width: 250px;
-    height: 50vh;
+    height: 52vh;
     margin: 5% 10%;
     padding: 0% 10px;
     display: flex;
@@ -74,10 +74,23 @@
     padding-top: 5%;
 }
 
-.icon{
+.icon {
     position: relative;
     left: 44%;
     margin-top: 20%;
+    cursor: pointer;
+}
+
+.log-out {
+    background-color: rgb(255, 52, 52);
+    width: 110px;
+    border-radius: 20px;
+    padding: 3% 4%;
+    color: white;
+    font-weight: bold;
+    position: relative;
+    left: 70%;
+    margin-top: 5%;
     cursor: pointer;
 }
 
