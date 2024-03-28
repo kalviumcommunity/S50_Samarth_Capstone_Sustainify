@@ -8,6 +8,7 @@ import ContactUsPage from '../Components/ContactUsPage'
 import PostsPage from '../Components/PostsPage'
 import NewPost from '../Components/NewPost'
 import ProfilePage from '../Components/ProfilePage'
+import ProductsPage from '../Components/ProductsPage'
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path='/posts' element={<PostsPage />}  />
         <Route path='/newPost' element={<NewPost />} />
         <Route path='/profile' element={<ProfilePage />} />
+        <Route path='/products' element={<ProductsPage />} />
       </Routes>
     </Router>
     </div>

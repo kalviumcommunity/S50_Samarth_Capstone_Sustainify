@@ -3,14 +3,16 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import './CSS/PostsPage.css'
 import NewPost from './NewPost';
+import loginCheck from './LoginTokenCheck'
+
 
 
 function PostsPage() {
     const [posts, setPosts] = useState([]);
     const [showModal, setModal] = useState(false)
     const [likes, setLike] = useState(0);
+    const login = loginCheck();
 
-    
     // CODE FOR INCREASING THE LIKE COUNTER FOR THE POSTS 
     const increse = () => {
         setLike(likes + 1)
@@ -50,9 +52,15 @@ function PostsPage() {
                             <Link>
                                 <button>Videos</button>
                             </Link>
-                            <Link to={'/profile'} >
-                                <button>Profile</button>
-                            </Link>
+                            {login ?
+                                <Link to={'/profile'}>
+                                    <button>Profile</button>
+                                </Link>
+                                :
+                                <Link to={'/signUp'}>
+                                    <button>Sign In</button>
+                                </Link>
+                            }
                             <button onClick={() => setModal(true)}>New Post</button>
                         </span>
                     </header>

@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+.search input{
+    border: 1px solid rgba(86, 216, 51, 1);
+    width: 26vw;
+    position: relative;
+    left: 38vw;
+    top: 2vh;
+    padding: 10px 45px;
+    border-radius: 20px;
+    font-size: 25px;
+}
+
+.search ::placeholder{
+    color: rgba(86, 216, 51, 0.5);
+    font-weight: bold;
+}
+
+.products{
+    margin-top: 4vh;
+    height: 100%;
+}
+
+.flex-prods{
+    display: flex;
+
+}
+
+.left-product{
+    /* border: 1px solid red; */
+    width: 25vw;
+    position: sticky;
+    top: 0;
+}
+
+.sort{
+    color: white;
+    /* border: 1px solid red; */
+    padding: 5% 3% 5% 10%;
+    height: 12vh;
+    font-size: 15px;
+}
+
+.sort h1{
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.filter {
+    background-color: white;
+    padding: 8% 12%;
+    position: sticky;
+    top: 0;
+}
+
+.filter h2{
+    font-size: 30px;
+    font-weight: bold;
+    color: rgba(61, 136, 41, 1);
+    padding-bottom: 5%;
+    margin-left: 2%;
+}
+
+.option{
+    background-color: rgba(86, 216, 51, 1) ;
+    padding: 12px;
+    margin: 5px;
+}
+
+.prod-cards{
+    /* border: 1px solid red; */
+    background-color: white;
+    width: 220px;
+    height: fit-content;
+    margin: 15px 16px;  
+    text-align: center;
+}
+
+.prod-cards p{
+    font-weight: bold;
+    text-align: left;
+    margin-left: 5%;
+}
+
+.prod-cards h2{
+    text-align: left;
+    margin-left: 5%;
+}
+
+.prod-cards img{
+    width: 180px;
+    height: 130px;
+    border: 1px solid green;
+    margin: 10px;
+}

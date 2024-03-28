@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import './CSS/Landing.css'
 import { Link } from 'react-router-dom';
-import Cookies from 'js-cookies'
+import loginCheck from './LoginTokenCheck'
+
 
 function LandingPage() {
-    const [login, setlogin] = useState(false);
 
-    useEffect(() => {
-        const token = Cookies.getItem('token')
-
-        if (token) {
-            setlogin(true);
-        }
-        else {
-            setlogin(false);
-        }
-    })
+    // CHECKING WHETHER THE USER HAVE SIGNED-UP OR NO 
+    const login = loginCheck();
 
     return (
         <div className='background-image'>
@@ -33,7 +25,9 @@ function LandingPage() {
                     <Link to={'/posts'}>
                         <button>Posts</button>
                     </Link>
-                    <button>Products</button>
+                    <Link to={'/products'}>
+                        <button>Products</button>
+                    </Link>
                     <button>Videos</button>
                     <Link to={'/contact'}>
                         <button>Contact Us</button>
