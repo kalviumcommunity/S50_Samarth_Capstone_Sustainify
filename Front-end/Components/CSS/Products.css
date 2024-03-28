@@ -34,14 +34,15 @@
 }
 
 .left-product{
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 25vw;
     position: sticky;
+    top: 0;
 }
 
 .sort{
     color: white;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     padding: 5% 3% 5% 10%;
     height: 12vh;
     font-size: 15px;
@@ -56,6 +57,7 @@
     background-color: white;
     padding: 8% 12%;
     position: sticky;
+    top: 0;
 }
 
 .filter h2{
@@ -73,7 +75,7 @@
 }
 
 .prod-cards{
-    border: 1px solid red;
+    /* border: 1px solid red; */
     background-color: white;
     width: 220px;
     height: fit-content;

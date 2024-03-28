@@ -1,19 +1,26 @@
 import React from 'react'
 import './CSS/Profile.css'
-import { Cookie, FilePenLine, LogOut } from 'lucide-react';
+import { FilePenLine, LogOut } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookies'
 
 function ProfilePage() {
     const navigate = useNavigate();
 
+
+    // FUNCTION TO DELETE COOKIES
     const deleteToken = () => {
         Cookies.removeItem('token')
         alert("Logged-Out Successfully.")
         navigate('/')
     }
+
+
     return (
         <>
+
+            {/* HEADER */}
+
             <div className='bg profile-bg'>
                 <header className=' flex'>
                     <span className='logo-post'>
@@ -41,6 +48,9 @@ function ProfilePage() {
                     </span>
                 </header>
             </div>
+
+            {/* MAIN CONTAINER  */}
+
             <div className='profile'>
                 <div className='left-profile'>
                     <div>

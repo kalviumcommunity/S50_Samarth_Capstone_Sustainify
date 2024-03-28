@@ -1,9 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './CSS/ContactUs.css'
+import loginCheck from './LoginTokenCheck'
 
 
 function ContactUsPage() {
+
+    const login = loginCheck();
+
     return (
         <>
             <div>
@@ -24,11 +28,19 @@ function ContactUsPage() {
                         <Link to={'/posts'}>
                             <button>Posts</button>
                         </Link>
-                        <button>Products</button>
-                        <button>Videos</button>
-                        <Link to={'/signUp'}>
-                            <button>Profile</button>
+                        <Link to={'/products'}>
+                            <button>Products</button>
                         </Link>
+                        <button>Videos</button>
+                        {login ?
+                            <Link to={'/profile'}>
+                                <button>Profile</button>
+                            </Link>
+                            :
+                            <Link to={'/signUp'}>
+                                <button>Sign In</button>
+                            </Link>
+                        }
                     </span>
                 </header>
 
