@@ -39,7 +39,7 @@ function ProfilePage() {
                         <Link>
                             <button>Products</button>
                         </Link>
-                        <Link>
+                        <Link to={'/videos'}>
                             <button>Videos</button>
                         </Link>
                         <Link to={'/contact'} >

@@ -42,7 +42,9 @@ function NewsPage() {
               <button>Posts</button>
             </Link>
             <button>Products</button>
-            <button>Videos</button>
+            <Link to={'/videos'}>
+              <button>Videos</button>
+            </Link>
             {login ?
               <Link to={'/profile'}>
                 <button>Profile</button>
