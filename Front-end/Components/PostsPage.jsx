@@ -49,7 +49,7 @@ function PostsPage() {
                             <Link>
                                 <button>Products</button>
                             </Link>
-                            <Link>
+                            <Link to={'/videos'}>
                                 <button>Videos</button>
                             </Link>
                             {login ?

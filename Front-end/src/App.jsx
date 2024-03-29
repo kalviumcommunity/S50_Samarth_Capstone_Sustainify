@@ -9,6 +9,7 @@ import PostsPage from '../Components/PostsPage'
 import NewPost from '../Components/NewPost'
 import ProfilePage from '../Components/ProfilePage'
 import ProductsPage from '../Components/ProductsPage'
+import Videos from '../Components/Videos'
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path='/newPost' element={<NewPost />} />
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/products' element={<ProductsPage />} />
+        <Route path='/videos' element={<Videos />} />
       </Routes>
     </Router>
     </div>

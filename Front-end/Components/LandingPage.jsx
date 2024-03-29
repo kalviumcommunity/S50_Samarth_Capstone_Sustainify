@@ -28,7 +28,9 @@ function LandingPage() {
                     <Link to={'/products'}>
                         <button>Products</button>
                     </Link>
-                    <button>Videos</button>
+                    <Link to={'/videos'}>
+                        <button>Videos</button>
+                    </Link>
                     <Link to={'/contact'}>
                         <button>Contact Us</button>
                     </Link>

@@ -27,7 +27,9 @@ function ProductsPage() {
                     <Link to={'/posts'}>
                         <button>Posts</button>
                     </Link>
-                    <button>Videos</button>
+                    <Link to={'/videos'}>
+                        <button>Videos</button>
+                    </Link>
                     <Link to={'/contact'}>
                         <button>Contact Us</button>
                     </Link>
