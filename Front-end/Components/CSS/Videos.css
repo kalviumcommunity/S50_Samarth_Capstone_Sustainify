@@ -12,23 +12,23 @@
 }
 
 .vids-header img {
-    width: 180px;
+    width: 100%;
     display: inline-block;
     justify-content: center;
     align-items: center;
-    margin-left: 50px;
-    margin-top: -25px;
+    margin-left: 20%;
+    margin-top: -18%;
 }
 
 .pos{
     position: fixed;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
 }
 
 .top-bar{
     position: absolute;
-    left: 150px;
+    left: 100%;
     width: 89vw;
     background-image: linear-gradient(to left , rgb(106, 236, 117), #104f19);
     color: white;
