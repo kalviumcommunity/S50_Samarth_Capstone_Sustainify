@@ -24,7 +24,7 @@ app.use("/post", postRouter)
 // Google OAuth part 
 
 require('./auth.js')
-app.use(session({ secret: process.env.secret }))
+app.use(session({ secret: process.env.secretAuth }))
 app.use(passport.initialize());
 app.use(passport.session());
 
