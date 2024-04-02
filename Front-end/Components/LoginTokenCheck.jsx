@@ -8,11 +8,14 @@ function LoginTokenCheck() {
 
     useEffect(() => {
         const token = Cookies.getItem('token');
+        const token2 = Cookies.getItem('connect.sid')
 
-        if(token){
+        if(token2 || token){
             setLogin(true);
+            console.log(token2)
         }
         else {
+            console.log(token2)
             setLogin(false);
         }
     },[])
