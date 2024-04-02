@@ -1,4 +1,0 @@
-GET http://localhost:2001/user
-
-
-POST http://localhost:2001/user

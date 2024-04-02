@@ -3,6 +3,7 @@ import './CSS/Profile.css'
 import { FilePenLine, LogOut } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookies'
+import axios from 'axios'
 
 function ProfilePage() {
     const navigate = useNavigate();
@@ -10,6 +11,10 @@ function ProfilePage() {
 
     // FUNCTION TO DELETE COOKIES
     const deleteToken = () => {
+        axios.get('http://localhost:2001/logout')
+        .then(res => console.log(res))
+        .catch(error => console.log(error))
+
         Cookies.removeItem('token')
         alert("Logged-Out Successfully.")
         navigate('/')

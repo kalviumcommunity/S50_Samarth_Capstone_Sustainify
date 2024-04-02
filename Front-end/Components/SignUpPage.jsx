@@ -27,6 +27,16 @@ function SignUpPage() {
         }
     };
 
+    // FUNTION TO OPEN THE GOOGLE AUTH 
+    const openGoogle = () => {
+        try {
+            window.location.href = "http://localhost:2001/auth/google";
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
     return (
         <div className='background-image' >
 
@@ -75,6 +85,10 @@ function SignUpPage() {
                                 <span>Log-in</span>
                             </Link>
                         </p>
+                    </div>
+                    <div className='auth' onClick={openGoogle}>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKUScqW4YTyBJ0Lg5GHQYI9TuRsM7rXzNWzw&s" alt="Google Icon" width={'40px'} />
+                        <p>Sign up with Google</p>
                     </div>
                     <div className='flex-around'>
                         <Link to={'/'}>

@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+.vids-header{
+    z-index: 1;
+}
+
 .vids-header header{
     width: 150px;
     align-items: center;
@@ -32,12 +36,14 @@
     width: 89vw;
     background-image: linear-gradient(to left , rgb(106, 236, 117), #104f19);
     color: white;
+    z-index: 1;
 }
 
 .srch{
     margin-left: 33%;
     margin-top: 2%;
     margin-bottom: 2%;
+    z-index: 1;
 }
 
 .srch input{
@@ -54,7 +60,6 @@
 
 .video-part{
     position: relative;
-    z-index: -1;
     top: 60px;
     left: 5vw;
     height: 100%;
@@ -68,6 +73,7 @@
     width: 20vw;
     margin-bottom: 30px;
     border-radius: 20px;
+    z-index: 1;
 }
 
 .vids label{
