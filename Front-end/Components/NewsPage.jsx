@@ -38,6 +38,7 @@ function NewsPage() {
             width={200}
           />
         </div>
+        
         :
 
         <div className="news-header">
