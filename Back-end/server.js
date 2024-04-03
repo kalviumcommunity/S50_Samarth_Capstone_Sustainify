@@ -10,12 +10,7 @@ const port = process.env.PORT;
 const session = require('express-session');
 
 connectDB();
-app.use(cors(
-    {
-        origin: "http://localhost:2001/",
-        credentials: true
-    }
-))
+app.use(cors())
 app.use(express.json())
 app.use("/user", userRouter)
 app.use("/post", postRouter)
@@ -37,13 +32,13 @@ app.get('/google', (req, res) => {
 })
 
 app.get('/auth/google',
-    passport.authenticate('google', { scope: ['email', 'profile'] })
+    passport.authenticate('google', { scope: ['email', 'profile'] }) 
 )
 
 app.get('/google/callback',
     passport.authenticate('google', {
-        successRedirect: '/protected',
-        failureRedirect: 'auth/failure'
+        successRedirect: 'http://localhost:5173/',
+        failureRedirect: 'http://localhost:5173/user/login'
     })
 )
 
