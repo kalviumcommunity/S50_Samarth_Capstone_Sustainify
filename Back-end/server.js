@@ -12,7 +12,7 @@ const session = require('express-session');
 connectDB();
 app.use(cors(
     {
-        origin: "http://localhost:2001/",
+        origin: "http://localhost:5173",
         credentials: true
     }
 ))
@@ -37,13 +37,13 @@ app.get('/google', (req, res) => {
 })
 
 app.get('/auth/google',
-    passport.authenticate('google', { scope: ['email', 'profile'] })
+    passport.authenticate('google', { scope: ['email', 'profile'] }) 
 )
 
 app.get('/google/callback',
     passport.authenticate('google', {
-        successRedirect: '/protected',
-        failureRedirect: 'auth/failure'
+        successRedirect: 'http://localhost:5173/',
+        failureRedirect: 'http://localhost:5173/user/login'
     })
 )
 

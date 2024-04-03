@@ -10,6 +10,14 @@
     /* padding: 10px 0;  */
 }
 
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 50vh;
+}
+
 .card {
     border: 1px solid rgba(0, 0, 0, 0.1);
     width: 350px;
