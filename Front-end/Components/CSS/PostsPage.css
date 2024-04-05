@@ -1,4 +1,4 @@
-.post-head{
+.post-head {
     font-size: 35px;
     color: rgb(29, 93, 38);
     font-style: italic;
@@ -7,19 +7,19 @@
     margin-top: 1%;
 }
 
-.flex-post{
+.flex-post {
     display: flex;
     justify-content: space-between;
     width: 185vh;
 }
 
-.logo-post{
+.logo-post {
     width: 200px;
     height: fit-content;
     margin-left: 10%;
 }
 
-.flex-coln{
+.flex-coln {
     display: flex;
     flex-direction: column;
     width: 200px;
@@ -31,56 +31,68 @@
     left: 0px;
 }
 
-.flex-coln button{
+.flex-coln button {
     margin-top: 26%;
 }
 
-.card-post{
+.card-post {
     width: 800px;
 }
 
-.flex-card{
+.flex-card {
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-.flex-card img{
+.flex-card img {
     width: 600px;
 }
 
-.card-data{
+.card-data {
     padding: 2%;
     width: 1200px;
 }
 
-.card-data h2{
+.card-data h2 {
     font-weight: 700;
     font-size: 25px;
 }
 
-.like button{
-    background-color: red;
+.flex-space{
+    display: flex;
+    justify-content: space-around;
+    width: 200px;
+}
+
+.post-btns{
+    position: relative;
+    left: 76%;
+}
+
+.post-btns button {
     color: white;
     border: none;
     padding: 5px 10px;
-    margin-top: 10px; 
+    margin-top: 10px;
     border-radius: 5px;
     font-weight: 500;
+    width: 80px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    position: relative;
-    left: 90%;
 }
 
-.like button:hover{
+.like button {
+    background-color: red;
+
+}
+
+.like button:hover {
     background-color: white;
-    border: 1px solid red;
     color: red;
     font-weight: 700;
 }
 
-.like button:active{
+.like button:active {
     background-color: red;
     color: white;
 }
