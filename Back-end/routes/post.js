@@ -15,6 +15,19 @@ router.get('/', async (req, res) =>{
     }
 })
 
+
+// GET Request FOR SPEACIFIC POST
+router.get('/:id', async (req, res) => {
+    const id = req.params.id;
+    try {
+        const data = await posts.findById(id);
+        console.log(data)
+        res.status(200).json(data);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
 // POST Request 
 router.post('/', async (req,res) => {
 
@@ -35,6 +48,17 @@ router.post('/', async (req,res) => {
     }
     catch (err) {
         res.status(400).json({ message : err.message })
+    }
+})
+
+// PUT request 
+router.put('/:id', async (req,res) =>{
+    const id = req.params.id;
+    try {
+        const data = await posts.findByIdAndUpdate(id, req.body, { new: true });
+        res.status(200).json(data);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
     }
 })
 

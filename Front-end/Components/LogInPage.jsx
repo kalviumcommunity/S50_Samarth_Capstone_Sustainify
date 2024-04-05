@@ -16,13 +16,14 @@ function LogInPage() {
 
         try {
             const res = await axios.post('http://localhost:2001/user/login', { userName, password });
+            console.log(res.data)
 
-            if (res.data.message === 'success') {
+            if (res.data === 'success') {
                 alert('Successfully Logged-In');
                 navigate('/');
-            } else if (res.data.message === 'the password is incorrect') {
+            } else if (res.data === 'the password is incorrect') {
                 setErrors({ ...errors, password: 'Incorrect password' });
-            } else if (res.data.message === 'no user exists') {
+            } else if (res.data === 'no user exists') {
                 setErrors({ ...errors, userName: `The User doesn't exist` });
             }
         } catch (error) {

@@ -5,6 +5,8 @@ import './CSS/PostsPage.css'
 import NewPost from './NewPost';
 import loginCheck from './LoginTokenCheck'
 import BarLoader from "react-spinners/BarLoader";
+import { FilePenLine } from 'lucide-react';
+import EditPost from './EditPost';
 
 
 
@@ -19,10 +21,10 @@ function PostsPage() {
     const increse = () => {
         setLike(likes + 1);
     }
-    
+
     // CODE TO GET DATA FROM THE DATA AND STORING IN STATE USING useState()
     useEffect(() => {
-        setLoading(true); 
+        setLoading(true);
         axios.get('http://localhost:2001/post')
             .then(res => {
                 setPosts(res.data);
@@ -30,10 +32,10 @@ function PostsPage() {
             })
             .catch(err => {
                 console.log('Error fetching the data', err);
-                setLoading(false); 
+                setLoading(false);
             });
     }, []);
-    
+
     return (
         <>
 
@@ -97,8 +99,13 @@ function PostsPage() {
                                                 <p>{data.description}</p>
                                             </span>
                                         </div>
-                                        <div className='like'>
-                                            <button onClick={increse} >Like♡ {likes}</button>
+                                        <div className='post-btns flex-space'>
+                                            <div className='like'>
+                                                <button onClick={increse} >Like♡ {likes}</button>
+                                            </div>
+                                            <div className='flex-space'>
+                                                <button className='flex-space' onClick={() => setModal(true)}>Edit <FilePenLine /></button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -109,6 +116,11 @@ function PostsPage() {
 
                     {/* NEW POST MODAL  */}
                     {showModal && <NewPost onClose={() => setModal(false)} />}
+
+                    {/* EDIT POST MODAL  */}
+
+                    {showModal && <EditPost onClose={() => setModal(false)} />}
+
 
                 </div>
             }
