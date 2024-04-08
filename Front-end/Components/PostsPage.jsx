@@ -13,6 +13,7 @@ import EditPost from './EditPost';
 function PostsPage() {
     const [posts, setPosts] = useState([]);
     const [showModal, setModal] = useState(false)
+    const [displayMod, setMod] = useState(false)
     const [likes, setLike] = useState(0);
     const login = loginCheck();
     const [loading, setLoading] = useState(false);
@@ -104,7 +105,7 @@ function PostsPage() {
                                                 <button onClick={increse} >Like♡ {likes}</button>
                                             </div>
                                             <div className='flex-space'>
-                                                <button className='flex-space' onClick={() => setModal(true)}>Edit <FilePenLine /></button>
+                                                <button className='flex-space' onClick={() => setMod(true)}>Edit <FilePenLine /></button>
                                             </div>
                                         </div>
                                     </div>
@@ -118,8 +119,7 @@ function PostsPage() {
                     {showModal && <NewPost onClose={() => setModal(false)} />}
 
                     {/* EDIT POST MODAL  */}
-
-                    {showModal && <EditPost onClose={() => setModal(false)} />}
+                    { displayMod && <EditPost onClose={() => setMod(false)} />}
 
 
                 </div>

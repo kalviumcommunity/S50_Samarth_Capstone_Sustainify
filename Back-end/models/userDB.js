@@ -4,7 +4,10 @@ const userSchema = new mongoose.Schema({
     "name":String,
     "email": String,
     "userName": String,
-    "password": String
+    "password": String,
+    "number": Number,
+    "bio": String,
+    "goal": String
 })
 
 const user = mongoose.model('User',userSchema)
