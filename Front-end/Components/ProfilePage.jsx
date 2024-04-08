@@ -22,7 +22,6 @@ function ProfilePage() {
         setLoading(true);
         const token = Cookies.getItem('token');
         if (!token) {
-            // Handle if token is not found
             setLoading(false);
             return;
         }
@@ -110,7 +109,9 @@ function ProfilePage() {
                                 <hr className='grey' />
                                 <div className='space'>
                                     <h2>Sustainability Goal</h2>
-                                    <p>{userInfo.sustainabilityGoal}</p>
+                                    <p>
+                                        To live a Sustainibile life and contribute towards the betterment of the environment
+                                    </p>
                                 </div>
                                 <div>
                                     <h2>Bio</h2>

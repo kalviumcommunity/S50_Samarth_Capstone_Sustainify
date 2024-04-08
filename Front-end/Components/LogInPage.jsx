@@ -22,6 +22,7 @@ function LogInPage() {
             const token = res.data.token
             Cookies.setItem("token", token)
             console.log(token)
+            console.log(res.data.message)
 
             if (res.data.message === 'success') {
                 alert('Successfully Logged-In');

@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
 const secretCode = process.env.SECRET_CODE;
 
-// Middleware to verify and decode token
+// MIDDLEWARE
+
 const verifyToken = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1]; 
     if (!token) {
