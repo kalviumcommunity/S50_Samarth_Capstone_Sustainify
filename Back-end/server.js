@@ -8,6 +8,8 @@ const cors = require('cors');
 const passport = require('passport');
 const port = process.env.PORT;
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
+
 
 connectDB();
 app.use(cors(
@@ -16,9 +18,16 @@ app.use(cors(
         credentials: true
     }
 ))
+
 app.use(express.json())
 app.use("/user", userRouter)
 app.use("/post", postRouter)
+app.use(cookieParser());
+app.get('/protected', isLoggedIn, (req, res) => {
+    const accessToken = req.cookies.accessToken;
+    res.send(`Hello ${req.user.displayName}, Access Token: ${accessToken}`);
+});
+
 
 
 // Google OAuth part 
@@ -44,17 +53,25 @@ app.get('/google/callback',
     passport.authenticate('google', {
         successRedirect: 'http://localhost:5173/',
         failureRedirect: 'http://localhost:5173/user/login'
-    })
-)
+    }),
+    (req, res) => {
+        console.log(req.user)
+        const accessToken = req.user.accessToken; 
+        res.cookie('accessToken', accessToken, { maxAge: 900000, httpOnly: true });
+        res.redirect('/protected'); 
+    }
+);
 
-app.get('auth/failure', (req, res) => {
+
+app.get('/auth/failure', (req, res) => {
     res.send("something went worng")
 })
 
 app.get('/protected', isLoggedIn, (req, res) => {
-    res.send(`Hello ${req.user.displayName}`)
+    const accessToken = req.cookies.accessToken;
+    res.send(`Hello ${req.user.displayName}, Access Token: ${accessToken}`);
+});
 
-})
 
 app.get('/logout', (req, res) => {
     req.logout((err) => console.log(err))

@@ -4,7 +4,7 @@ const secretCode = process.env.SECRET_CODE;
 // Middleware
 const verifyToken = (req, res, next) => {
     const authHeader = req.headers.authorization;
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    if (!authHeader || !authHeader.startsWith('Bearer')) {
         return res.status(403).json({ message: 'No token provided' });
     }
     const token = authHeader.split(' ')[1];

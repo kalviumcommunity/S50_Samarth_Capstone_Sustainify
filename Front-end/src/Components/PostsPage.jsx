@@ -77,7 +77,7 @@ function PostsPage() {
     // TOGGLE TO SEE THE COMMENTS AND POST COMMENTS
     const handleCommentSectionOpen = (postId) => {
         setID(postId);
-        setToggle(prevState => ({ ...prevState, [postId]: !prevState[postId] }));
+        setToggle({ ...toggle, [postId]: !toggle[postId] });
     };
 
 
