@@ -47,7 +47,7 @@
     width: 100%; 
 }
 
-.card button {
+.readMore {
     background-color: #1e7fc3;
     color: white;
     border: none;
@@ -59,8 +59,9 @@
     transition: background-color 0.3s ease;
 }
 
-.card button:hover {
+.readMore:hover {
     background-color: #135c89;
+    color: white;
 }
 
 .news {

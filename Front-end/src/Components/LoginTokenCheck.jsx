@@ -1,4 +1,3 @@
-import React from 'react'
 import { useState, useEffect } from 'react'
 import Cookies from 'js-cookies'
 
@@ -8,9 +7,10 @@ function LoginTokenCheck() {
 
     useEffect(() => {
         const token = Cookies.getItem('token');
+        const accessToken = Cookies.getItem('accessToken')
         // const token2 = Cookies.getItem('connect.sid')
-        console.log(token)
-        if( token){
+        // console.log(accessToken)
+        if(token){
             setLogin(true);
             // console.log(token2)
         }

@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { X } from 'lucide-react';
+import Cookies from 'js-cookies'
 import './CSS/NewPost.css';
 import axios from 'axios';
 
@@ -29,17 +30,20 @@ function NewPost({ onClose }) {
 
     const onSubmit = async (data) => {
         try {
-
+            const Id = Cookies.getItem('Id')
             // CODE FOR STORING FILE OR URL INPUT
             if (selectedOption === 'file') {
                 const formData = new FormData();
                 formData.append("image", data.file[0]);
                 const imgURL = await covertImage(data.file[0])
 
+
+
                 const postData = {
                     img: imgURL,
                     title: data.title,
-                    description: data.description
+                    description: data.description,
+                    createdBy: Id
                 }
                 console.log(postData);
                 const res = await axios.post('http://localhost:2001/post', postData);
@@ -51,14 +55,15 @@ function NewPost({ onClose }) {
                 const postData = {
                     img: data.url,
                     title: data.title,
-                    description: data.description
+                    description: data.description,
+                    createdBy: Id
                 };
                 const res = await axios.post('http://localhost:2001/post', postData);
                 console.log(res.data);
                 alert("Posted")
             }
             onClose();
-        } 
+        }
         catch (error) {
             console.error(error);
         }
@@ -76,7 +81,7 @@ function NewPost({ onClose }) {
     const renderInput = () => {
         if (selectedOption === 'file') {
             return <input type="file" {...register("file")} />;
-        } 
+        }
         else {
             return <input type="text" {...register("url")} />;
         }

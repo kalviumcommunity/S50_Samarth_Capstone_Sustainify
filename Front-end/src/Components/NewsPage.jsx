@@ -89,7 +89,7 @@ function NewsPage() {
                       <div className='card-body' >
                         <h3 className='card-title'>{ele.title}</h3>
                         <p className='card-text'>{!ele.description ? defaultText : ele.description} </p>
-                        <a href={ele.url} target='_blank'><button>Read more</button></a>
+                        <a href={ele.url} target='_blank'><button className='readMore'>Read more</button></a>
                       </div>
                     </div>
                   </>

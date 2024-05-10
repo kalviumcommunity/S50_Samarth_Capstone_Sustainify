@@ -1,16 +1,18 @@
 import React from 'react'
-import LandingPage from '../Components/LandingPage'
+import LandingPage from './Components/LandingPage'
 import { BrowserRouter as Router,Route,Routes } from 'react-router-dom'
-import SignUpPage from '../Components/SignUpPage'
-import NewsPage from '../Components/NewsPage'
-import LogInPage from '../Components/LogInPage'
-import ContactUsPage from '../Components/ContactUsPage'
-import PostsPage from '../Components/PostsPage'
-import NewPost from '../Components/NewPost'
-import ProfilePage from '../Components/ProfilePage'
-import ProductsPage from '../Components/ProductsPage'
-import Videos from '../Components/Videos'
-import EditPost from '../Components/EditPost'
+import SignUpPage from './Components/SignUpPage'
+import NewsPage from './Components/NewsPage'
+import LogInPage from './Components/LogInPage'
+import ContactUsPage from './Components/ContactUsPage'
+import PostsPage from './Components/PostsPage'
+import NewPost from './Components/NewPost'
+import ProfilePage from './Components/ProfilePage'
+import ProductsPage from './Components/ProductsPage'
+import Videos from './Components/Videos'
+import EditPost from './Components/EditPost'
+import AdditionalInfo from './Components/AdditionalInfo'
+import EditProfile from './Components/EditProfile'
 
 
 function App() {
@@ -30,6 +32,8 @@ function App() {
         <Route path='/products' element={<ProductsPage />} />
         <Route path='/videos' element={<Videos />} />
         <Route path='/edit' element={<EditPost />}/>
+        <Route path='/info' element={<AdditionalInfo />}/>
+        <Route path='/editProfile' element={<EditProfile />}/>
       </Routes>
     </Router>
     </div>
