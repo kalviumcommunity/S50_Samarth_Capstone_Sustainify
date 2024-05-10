@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './CSS/Profile.css';
-import { FilePenLine, LogOut } from 'lucide-react';
+import { FilePenLine, LogOut, ChevronsDown, ChevronsUp, ThumbsUp } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookies';
 import axios from 'axios';
@@ -9,7 +9,9 @@ import BarLoader from "react-spinners/BarLoader";
 function ProfilePage() {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
+    const [toggle, setToggle] = useState(false);
     const [userInfo, setUserInfo] = useState('');
+    const [userPost, setUserPosts] = useState([]);
 
     // FUNCTION TO DELETE COOKIES
     const deleteToken = () => {
@@ -18,9 +20,20 @@ function ProfilePage() {
         navigate('/');
     };
 
+    // TOGGLE TO SHOW THE USER'S POSTS
+    const showPosts = () => {
+        if (toggle == false) {
+            setToggle(true)
+        }
+        else {
+            setToggle(false)
+        }
+    }
+
     useEffect(() => {
         setLoading(true);
         const token = Cookies.getItem('token');
+        const userID = Cookies.getItem('Id');
         if (!token) {
             setLoading(false);
             return;
@@ -38,6 +51,18 @@ function ProfilePage() {
                 console.error('Error fetching user details:', error);
                 setLoading(false);
             });
+
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`http://localhost:2001/user/myPosts/${userID}`);
+                setUserPosts(response.data)
+            } 
+            catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        };
+
+        fetchData();
 
     }, []);
 
@@ -122,6 +147,53 @@ function ProfilePage() {
                                 <button>Log out</button>
                                 <LogOut />
                             </div>
+                        </div>
+                    </div>
+                    {/* POST PART */}
+                    <div className='posts' >
+                        <div className='disPost'>
+                            <button className='flex-space' onClick={showPosts}>
+                                See posts
+                                {toggle ? <ChevronsUp /> : <ChevronsDown />}
+                            </button>
+                        </div>
+                        <div>
+                            {
+                                toggle ?
+                                    <div>
+                                        {userPost && userPost.map((data, index) => (
+                                            <div className='main-post' key={index}>
+                                                <div className='card card-post'>
+                                                    <div className='flex-card'>
+                                                        <span>
+                                                            <img src={data.img} alt='Image' width={'600px'} />
+                                                        </span>
+                                                        <span className='card-data'>
+                                                            <h2>{data.title}</h2>
+                                                            <br />
+                                                            <p>{data.description}</p>
+                                                        </span>
+                                                    </div>
+                                                    <div className='post-btns flex-space'>
+                                                        <div className='like'>
+                                                            <button className='flex-space like' onClick={() => increaseLikes(data.id)}>
+                                                                <ThumbsUp />
+                                                            </button>
+                                                        </div>
+                                                        <div className='flex-space'>
+                                                            <button className='flex-space' >
+                                                            {/* onClick={() => setMod(true)} */}
+                                                                <FilePenLine />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+
+                                    </div>
+                                    :null
+                            }
                         </div>
                     </div>
                 </div>

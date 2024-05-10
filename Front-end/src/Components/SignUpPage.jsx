@@ -17,8 +17,9 @@ function SignUpPage() {
             axios.post("http://localhost:2001/user", data)
                 .then(res => {
                     console.log(res.data)
-                    const { token } = res.data;
+                    const { id, token } = res.data;
                     Cookies.setItem("token", token)
+                    Cookies.setItem("Id", id)
                     alert("Welcome to Sustainify. Let's look at the Latest news around the world")
                 })
             navigate('/news');

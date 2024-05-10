@@ -4,7 +4,6 @@ import './CSS/Landing.css';
 import axios from 'axios';
 import Cookies from 'js-cookies';
 
-
 function LogInPage() {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
@@ -18,24 +17,30 @@ function LogInPage() {
 
         try {
             const res = await axios.post('http://localhost:2001/user/login', { userName, password });
-            console.log(res.data)
-            const token = res.data.token
-            Cookies.setItem("token", token)
-            console.log(token)
-            console.log(res.data.message)
+            const { token, user } = res.data;
 
-            if (res.data.message === 'success') {
+            // console.log(user)
+            Cookies.setItem("token", token);
+            Cookies.setItem("Id", user._id);
+            console.log(user._id, "this is the user id");
+
+            if (res.status === 200) {
                 alert('Successfully Logged-In');
                 navigate('/');
-            } else if (res.data.message === 'the password is incorrect') {
-                setErrors({ ...errors, password: 'Incorrect password' });
-            } else if (res.data.message === 'no user exists') {
-                setErrors({ ...errors, userName: `The User doesn't exist` });
+            } else {
+                if (res.status === 401) {
+                    setErrors({ ...errors, password: 'Incorrect password' });
+                } else if (res.status === 404) {
+                    setErrors({ ...errors, userName: `The User doesn't exist` });
+                } else {
+                    console.error('Login failed with status:', res.status);
+                }
             }
         } catch (error) {
-            console.log('Error:', error.message);
+            console.error('Error:', error.message);
         }
     };
+
 
     return (
         <div className='background-image'>
@@ -54,19 +59,22 @@ function LogInPage() {
                 <div className='inputs'>
                     <label>User Name</label>
                     <input type="text" name='userName' value={userName} onChange={(e) => setUserName(e.target.value)} />
-                    {errors.userName && <p className='errors'>{errors.userName}</p>}
+                    {errors.userName && <p>{errors.userName}</p>}
                 </div>
                 <div className='inputs'>
                     <label>Password</label>
                     <input type="password" name='password' value={password} onChange={(e) => setPassword(e.target.value)} />
-                    {errors.password && <p className='errors'>{errors.password}</p>}
+                    {errors.password && <p>{errors.password}</p>}
                 </div>
                 <p>New User?
                     <Link to={'/signUp'}>
                         <span>Sign-Up</span>
                     </Link>
                 </p>
-                <div>
+                <div className='flex-around'>
+                    <Link to={'/'}>
+                        <button>Back</button>
+                    </Link>
                     <button type='submit'>Log-In</button>
                 </div>
             </form>
