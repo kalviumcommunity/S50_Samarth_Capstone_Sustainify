@@ -1,12 +1,14 @@
-import React from 'react'
+import React from "react";
 
 function EditProfile() {
   return (
-    <div>
+    <>
       <div>
-        <h1 className='font-serif'>In this page the user can edit their information</h1>
+        <div >
+          <h1 className='font-serif'>This is a page for editing info about the user</h1>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

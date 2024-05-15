@@ -100,7 +100,7 @@ function NewPost({ onClose }) {
 
                         {/* CHOICE FOR UPLOADING IMAGE */}
 
-                        <div className='option'>
+                        <div className='option bg-inherit'>
                             <label>
                                 <input
                                     type="radio"

@@ -26,7 +26,7 @@ function LogInPage() {
 
             if (res.status === 200) {
                 alert('Successfully Logged-In');
-                navigate('/');
+                navigate('/posts');
             } else {
                 if (res.status === 401) {
                     setErrors({ ...errors, password: 'Incorrect password' });
@@ -47,7 +47,7 @@ function LogInPage() {
 
             {/* HEADER  */}
 
-            <div className='log-header'>
+            <div className='log-header font-sans'>
                 <h1>Welcome Back <br />Continuing the Journey: Together Towards a Greener Future!</h1>
             </div>
 

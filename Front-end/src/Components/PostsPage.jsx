@@ -22,17 +22,15 @@ function PostsPage() {
     const [comment, setComment] = useState(' ')
     const [postId, setID] = useState(' ')
     const id = Cookies.getItem('Id')
-    // const [userName, setUserName] = useState([])
-
+    const token = Cookies.getItem('token')
+    const [userName, setUserName] = useState([])
+// 
 
 
 
     // CODE TO GET DATA FROM THE DATA AND STORING IN STATE USING useState()
     useEffect(() => {
         setLoading(true);
-        // if (!login) {
-        //     alert("Seems like you havent Logged In! Please Log-In to Explore more ")
-        // }
         axios.get('http://localhost:2001/post')
             .then((res) => {
                 const postsData = res.data;
@@ -44,17 +42,22 @@ function PostsPage() {
                 setLoading(false);
             });
 
-        // const fetchUserName = async () => {
+        // const fetchUserData = async () => {
         //     try {
-        //         const res = await axios.get(`http://localhost:2001/post/userName/${id}`);
-        //         setUserName(res.data.userName)
+        //         const res =  axios.get('http://localhost:2001/user/verify', {
+        //             headers: {
+        //                 Authorization: `Bearer ${token}`
+        //             }
+        //         })
+        //         setUserName(res.data)
+        //         console.log(res.data)
         //     }
         //     catch (err) {
-        //         console.error('Error fetching user data:', error);
+        //         console.error('Error fetching user data:', err);
         //     }
         // };
 
-        // fetchUserName();
+        // fetchUserData();
 
     }, []);
 
@@ -102,7 +105,7 @@ function PostsPage() {
 
     return (
         <>
-            {loading ? (
+            {loading  ? (
                 <div className='loading'>
                     <BarLoader color='#33f740' height={6} width={200} />
                 </div>

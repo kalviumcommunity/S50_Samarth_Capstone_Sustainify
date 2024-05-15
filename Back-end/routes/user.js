@@ -7,7 +7,6 @@ const secretCode = process.env.SECRET_CODE;
 const verifyToken = require('./middleware/verifyToken.js');
 const posts = require('../models/postDB.js');
 
-
 // GET REQUEST
 router.get('/', async (req, res) => {
     try {
@@ -22,7 +21,7 @@ router.get('/', async (req, res) => {
 // GET REQUEST FOR VERIFICATION
 router.get('/verify', verifyToken, async (req, res) => {
     try {
-        const userId = req.user._id; 
+        const userId = req.user._id;
         const data = await user.findById(userId);
         res.status(200).json(data);
     }
@@ -63,11 +62,11 @@ router.get('/username/:username', async (req, res) => {
 
 
 // FUNCTION TO GENERATE TOKENS
-const generateToken = (data) => {
+const generateToken = (tokenData) => {
     try {
-        const token = jwt.sign(data.toJSON(), secretCode);
+        const token = jwt.sign(tokenData, secretCode);
         return token;
-    } 
+    }
     catch (error) {
         console.error('Token generation failed:', error);
     }
@@ -76,27 +75,33 @@ const generateToken = (data) => {
 // LOGIN REQUEST
 router.post('/login', async (req, res) => {
     const { userName, password } = req.body;
-    // console.log(req.body)
     try {
         const foundUser = await user.findOne({ userName: userName });
-
+        // console.log(foundUser)
         if (foundUser) {
             const checkPass = await bcrypt.compare(password, foundUser.password);
             if (checkPass) {
-                const token = generateToken(foundUser)
+                const tokenData = {
+                    name: foundUser.name,
+                    email: foundUser.email,
+                    userName: foundUser.userName,
+                    password: foundUser.password,
+                    _id: foundUser._id
+                };
+                const token = generateToken(tokenData);
+                // console.log(token)
                 res.json({ message: 'success', token: token, user: foundUser });
             } else {
                 res.json('the password is incorrect');
             }
-        }
-        else {
+        } else {
             res.json('no user exists');
         }
-    }
-    catch (err) {
+    } catch (err) {
         res.status(500).json({ message: err.message });
     }
 });
+
 
 // POST request
 router.post('/', async (req, res) => {
@@ -108,16 +113,49 @@ router.post('/', async (req, res) => {
             email: req.body.email,
             userName: req.body.userName,
             password: hashedPassword,
-            posts: [  ]
+            posts: [],
+            img: req.body.img,
+            bio: req.body.bio,
+            goal: req.body.goal,
+            number: req.body.number
         };
 
+        console.log("this is the user data from frntend:-", userData)
         const data = await user.create(userData);
-        const token = generateToken(data);
-        res.status(200).json({ user: data, token: token, id:data._id });
+        console.log(data)
+        const tokenData = {
+            _id: data._id,
+            name: req.body.name,
+            email: req.body.email,
+            userName: req.body.userName,
+            password: hashedPassword,
+        }
+        const token = generateToken(tokenData);
+        console.log(tokenData)
+        res.status(200).json({ user: data, token: token, id: data._id });
     }
     catch (error) {
         res.status(400).json({ message: error.message });
     }
 });
+
+// PUT request for adding additional User information
+// router.put('/addInfo', async (req, res) => {
+//     try {
+//       const { userId } = req.body;
+//       const { img, bio, goal, number } = req.body; 
+
+//       const updatedData = await user.findByIdAndUpdate(userId, {
+//         img,
+//         bio,
+//         goal,
+//         number
+//       });
+//       console.log(updatedData); 
+//       res.status(200).json({ user: updatedData });
+//     } catch (error) {
+//       res.status(400).json({ message: error.message });
+//     }
+//   });
 
 module.exports = router;
