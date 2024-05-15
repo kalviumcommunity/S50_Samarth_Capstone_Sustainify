@@ -50,14 +50,14 @@ function LandingPage() {
 
             {/* MAIN CONTAINER  */}
 
-            <div className='container'>
-                <h1>Sustainify</h1>
-                <p>Sustainify offers a streamlined solution for eco-conscious living, providing personalized sustainability tips,
+            <div className='container ml-8'>
+                <h1 className='font-serif'>Sustainify</h1>
+                <p className='font-sans'>Sustainify offers a streamlined solution for eco-conscious living, providing personalized sustainability tips,
                     access to eco-friendly products, and a community of environmental enthusiasts. It centralizes resources and education,
                     helping individuals easily navigate their journey towards a more sustainable lifestyle, uniting intention with action
                     in environmental stewardship.</p>
                 {login ?
-                    <Link to={'/news'}>
+                    <Link to={'/posts'}>
                         <button>Let's be the Change →</button>
                     </Link>
                     :

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import './CSS/Landing.css';
-import axios from 'axios';
+// import axios from 'axios';
 import Cookies from 'js-cookies';
 
 
@@ -14,19 +14,19 @@ function SignUpPage() {
     // SUBMITTING THE FORM AND SAVING IN THE DATABASE 
     const onSubmit = async (data) => {
         try {
-            axios.post("http://localhost:2001/user", data)
-                .then(res => {
-                    console.log(res.data)
-                    const { id, token } = res.data;
-                    Cookies.setItem("token", token)
-                    Cookies.setItem("Id", id)
-                    alert("Welcome to Sustainify. Let's look at the Latest news around the world")
-                })
-            navigate('/news');
+            //     const response = await axios.post("http://localhost:2001/user", data);
+            //     const { id, token } = response.data;
+            //    console.log(response)
+            //     Cookies.setItem("token", token);
+            //     Cookies.setItem("Id", id);
+            Cookies.setItem("userData", JSON.stringify(data));
+            alert("Welcome to Sustainify. Please add Your information");
+            navigate("/info")
         } catch (error) {
-            console.log(error);
+            console.error("Error submitting form:", error);
         }
     };
+
 
     // FUNTION TO OPEN THE GOOGLE AUTH 
     const openGoogle = () => {

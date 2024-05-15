@@ -22,19 +22,19 @@
     flex-direction: column;
     gap: 5%;
     width: 400px;
-    height: 460px;
+    height: max-content;
     border-radius: 20px;
+    padding: 15px;
 }
 
 .modal-full button {
     position: relative;
     left: 90%;
-    top: 5%;
     width: min-content;
 }
 
 .modal-info form {
-    margin-left: 10%;
+    margin-left: 8%;
 }
 
 .modal-info h1 {
@@ -47,7 +47,7 @@
 
 .modal-btns button {
     padding: 1% 8%;
-    margin: 2% 5%;
+    margin: 3% 5%;
     font-weight: 600;
     left:30px;
     border-radius: 10px;
@@ -71,6 +71,10 @@
 
 .colr{
     color: white;
+}
+
+.lft{
+    margin-left: 380px;
 }
 
 @media (max-width: 700px) {

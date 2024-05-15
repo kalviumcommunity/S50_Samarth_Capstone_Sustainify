@@ -16,6 +16,9 @@ function ProfilePage() {
     // FUNCTION TO DELETE COOKIES
     const deleteToken = () => {
         Cookies.removeItem('token');
+        Cookies.removeItem('Id');
+        Cookies.removeItem('userData');
+
         alert("Logged-Out Successfully.");
         navigate('/');
     };
@@ -30,20 +33,24 @@ function ProfilePage() {
         }
     }
 
+
     useEffect(() => {
-        setLoading(true);
         const token = Cookies.getItem('token');
         const userID = Cookies.getItem('Id');
+
         if (!token) {
             setLoading(false);
             return;
         }
+
         axios.get('http://localhost:2001/user/verify', {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         })
             .then(response => {
+                console.log(token)
+                console.log("hii", response.data)
                 setUserInfo(response.data);
                 setLoading(false);
             })
@@ -55,17 +62,14 @@ function ProfilePage() {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`http://localhost:2001/user/myPosts/${userID}`);
-                setUserPosts(response.data)
-            } 
-            catch (error) {
+                setUserPosts(response.data);
+            } catch (error) {
                 console.error('Error fetching user data:', error);
             }
         };
 
         fetchData();
-
     }, []);
-
     return (
         <>
             {loading ?
@@ -110,53 +114,62 @@ function ProfilePage() {
                     <div className='profile'>
                         <div className='left-profile'>
                             <div>
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYapQGaZ_WSo2ev2rgJz7XIAS0st_kr7Vy8Eyz_9ay59X-98tH3uVMEjmPxw&s" alt="" />
-                                <h1>{userInfo.name}</h1>
-                                <h1>{userInfo.role}</h1>
-                                <FilePenLine className='icon' />
+                                <img src={userInfo.img} alt="" />
+                                <h1 className='font-bold mt-1'>{userInfo.userName}</h1>
+                                <Link to={'/editProfile'} >
+                                    <FilePenLine className='icon' />
+                                </Link>
                             </div>
-                        </div>
-                        <div className='right-profile'>
-                            <div className='top-right'>
-                                <h1>Information</h1>
+                            <div className='top-right pb-5 text-left mt-5'>
+                                <h1 className='text-2xl	font-bold'>Information</h1>
                                 <hr className='grey' />
                                 <div className='space'>
-                                    <h2>Email</h2>
+                                    <h2 className='text-lg font-bold'>Name</h2>
+                                    <p>{userInfo.name}</p>
+                                </div>
+                                <div >
+                                    <h2 className='text-lg	font-bold '>Email</h2>
                                     <p>{userInfo.email}</p>
                                 </div>
                                 <div>
-                                    <h2>Phone Number</h2>
-                                    <p>{userInfo.phoneNumber}</p>
+                                    <h2 className='text-lg	font-bold '>Phone Number</h2>
+                                    <p>{userInfo.number}</p>
                                 </div>
                             </div>
-                            <div className='bottom-right'>
+                        </div>
+                        <div className='right-profile'>
+                            <div className='bottom-right space'>
                                 <h1>Achievements</h1>
                                 <hr className='grey' />
                                 <div className='space'>
-                                    <h2>Sustainability Goal</h2>
+                                    <h2 className='text-lg font-bold'>Sustainability Goal</h2>
                                     <p>
-                                        To live a Sustainibile life and contribute towards the betterment of the environment
+                                        {userInfo.goal}
                                     </p>
                                 </div>
+                                <br />
                                 <div>
-                                    <h2>Bio</h2>
+                                    <h2 className='text-lg font-bold'>Bio</h2>
                                     <p>{userInfo.bio}</p>
                                 </div>
                             </div>
-                            <div className='flex log-out' onClick={deleteToken}>
-                                <button>Log out</button>
-                                <LogOut />
+                            <div className='flex-space w-72 mt-10'>
+                                <div className='disPost'>
+                                    <button className='flex-space' onClick={showPosts}>
+                                        See posts
+                                        {toggle ? <ChevronsUp /> : <ChevronsDown />}
+                                    </button>
+                                </div>
+
+                                <div className='flex log-out' onClick={deleteToken}>
+                                    <button>Log out</button>
+                                    <LogOut />
+                                </div>
                             </div>
                         </div>
                     </div>
                     {/* POST PART */}
                     <div className='posts' >
-                        <div className='disPost'>
-                            <button className='flex-space' onClick={showPosts}>
-                                See posts
-                                {toggle ? <ChevronsUp /> : <ChevronsDown />}
-                            </button>
-                        </div>
                         <div>
                             {
                                 toggle ?
@@ -182,7 +195,7 @@ function ProfilePage() {
                                                         </div>
                                                         <div className='flex-space'>
                                                             <button className='flex-space' >
-                                                            {/* onClick={() => setMod(true)} */}
+                                                                {/* onClick={() => setMod(true)} */}
                                                                 <FilePenLine />
                                                             </button>
                                                         </div>
@@ -192,7 +205,7 @@ function ProfilePage() {
                                         ))}
 
                                     </div>
-                                    :null
+                                    : null
                             }
                         </div>
                     </div>

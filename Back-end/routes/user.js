@@ -6,12 +6,6 @@ const jwt = require('jsonwebtoken')
 const secretCode = process.env.SECRET_CODE;
 const verifyToken = require('./middleware/verifyToken.js');
 const posts = require('../models/postDB.js');
-const bodyParser = require('body-parser');
-
-
-router.use(bodyParser.json({ limit: '50mb' }));
-router.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
-
 
 // GET REQUEST
 router.get('/', async (req, res) => {
@@ -135,7 +129,6 @@ router.post('/', async (req, res) => {
             email: req.body.email,
             userName: req.body.userName,
             password: hashedPassword,
-            img: req.body.img
         }
         const token = generateToken(tokenData);
         console.log(tokenData)
