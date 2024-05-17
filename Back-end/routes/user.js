@@ -66,9 +66,10 @@ const generateToken = (tokenData) => {
     try {
         const token = jwt.sign(tokenData, secretCode);
         return token;
+    
     }
-    catch (error) {
-        console.error('Token generation failed:', error);
+    catch (err) {
+        console.log('Token generation failed:', err);
     }
 }
 
@@ -134,28 +135,10 @@ router.post('/', async (req, res) => {
         console.log(tokenData)
         res.status(200).json({ user: data, token: token, id: data._id });
     }
-    catch (error) {
-        res.status(400).json({ message: error.message });
+    catch (err) {
+        res.status(400).json({ message: err.message });
     }
 });
 
-// PUT request for adding additional User information
-// router.put('/addInfo', async (req, res) => {
-//     try {
-//       const { userId } = req.body;
-//       const { img, bio, goal, number } = req.body; 
-
-//       const updatedData = await user.findByIdAndUpdate(userId, {
-//         img,
-//         bio,
-//         goal,
-//         number
-//       });
-//       console.log(updatedData); 
-//       res.status(200).json({ user: updatedData });
-//     } catch (error) {
-//       res.status(400).json({ message: error.message });
-//     }
-//   });
 
 module.exports = router;
