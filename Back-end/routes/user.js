@@ -132,7 +132,7 @@ router.post('/', async (req, res) => {
             password: hashedPassword,
         }
         const token = generateToken(tokenData);
-        console.log(tokenData)
+        // console.log(tokenData)
         res.status(200).json({ user: data, token: token, id: data._id });
     }
     catch (err) {
