@@ -18,7 +18,7 @@ function EditPost({ onClose }) {
     };
 
     useEffect(() => {
-        axios.get('http://localhost:2001/post/' + id)
+        axios.get('https://s50-samarth-capstone-sustainify.onrender.com/post/' + id)
             .then(res => {
                 setValue('title', res.data.title);
                 setValue('description', res.data.description);
