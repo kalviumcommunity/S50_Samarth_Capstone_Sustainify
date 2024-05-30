@@ -46,7 +46,7 @@ function NewPost({ onClose }) {
                     createdBy: Id
                 }
                 console.log(postData);
-                const res = await axios.post('http://localhost:2001/post', postData);
+                const res = await axios.post('https://s50-samarth-capstone-sustainify.onrender.com/post', postData);
                 console.log(res.data);
                 alert("Posted")
 
@@ -58,7 +58,7 @@ function NewPost({ onClose }) {
                     description: data.description,
                     createdBy: Id
                 };
-                const res = await axios.post('http://localhost:2001/post', postData);
+                const res = await axios.post('https://s50-samarth-capstone-sustainify.onrender.com/post', postData);
                 console.log(res.data);
                 alert("Posted")
             }

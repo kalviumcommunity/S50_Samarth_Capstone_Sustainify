@@ -31,7 +31,7 @@ function PostsPage() {
     // CODE TO GET DATA FROM THE DATA AND STORING IN STATE USING useState()
     useEffect(() => {
         setLoading(true);
-        axios.get('http://localhost:2001/post')
+        axios.get('https://s50-samarth-capstone-sustainify.onrender.com/post')
             .then((res) => {
                 const postsData = res.data;
                 setPosts(postsData);

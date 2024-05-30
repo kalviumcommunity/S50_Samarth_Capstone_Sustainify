@@ -43,7 +43,7 @@ function ProfilePage() {
             return;
         }
 
-        axios.get('http://localhost:2001/user/verify', {
+        axios.get('https://s50-samarth-capstone-sustainify.onrender.com/user/verify', {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -61,7 +61,7 @@ function ProfilePage() {
 
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:2001/user/myPosts/${userID}`);
+                const response = await axios.get(`https://s50-samarth-capstone-sustainify.onrender.com/user/myPosts/${userID}`);
                 setUserPosts(response.data);
             } catch (error) {
                 console.error('Error fetching user data:', error);
@@ -95,7 +95,7 @@ function ProfilePage() {
                                 <Link to={'/news'}>
                                     <button>News</button>
                                 </Link>
-                                <Link to={'/post'}>
+                                <Link to={'/posts'}>
                                     <button>Posts</button>
                                 </Link>
                                 <Link to={'/products'}>

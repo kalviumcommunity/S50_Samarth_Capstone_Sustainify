@@ -14,11 +14,6 @@ function SignUpPage() {
     // SUBMITTING THE FORM AND SAVING IN THE DATABASE 
     const onSubmit = async (data) => {
         try {
-            //     const response = await axios.post("http://localhost:2001/user", data);
-            //     const { id, token } = response.data;
-            //    console.log(response)
-            //     Cookies.setItem("token", token);
-            //     Cookies.setItem("Id", id);
             Cookies.setItem("userData", JSON.stringify(data));
             alert("Welcome to Sustainify. Please add Your information");
             navigate("/info")

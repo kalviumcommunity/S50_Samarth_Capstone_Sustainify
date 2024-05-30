@@ -24,7 +24,7 @@ function AdditionalInfo() {
         number: data.number
       };
 
-      const res = await axios.post('http://localhost:2001/user', combinedData);
+      const res = await axios.post('https://s50-samarth-capstone-sustainify.onrender.com/user', combinedData);
       console.log(res.data);
       const { id, token } = res.data;
       Cookies.setItem("token", token);

@@ -16,7 +16,7 @@ function LogInPage() {
         e.preventDefault();
 
         try {
-            const res = await axios.post('http://localhost:2001/user/login', { userName, password });
+            const res = await axios.post('https://s50-samarth-capstone-sustainify.onrender.com/user/login', { userName, password });
             const { token, user } = res.data;
 
             // console.log(user)
