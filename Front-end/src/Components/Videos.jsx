@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import loginCheck from './LoginTokenCheck'
 import ReactPlayer from 'react-player'
 import BarLoader from "react-spinners/BarLoader";
+import imag from '../assets/Logo.png'
+
 
 
 function Videos() {
@@ -50,7 +52,7 @@ function Videos() {
                             <div className='vids-header'>
                                 <header className='flex-coln bg'>
                                     <span className='logo-post'>
-                                        <img src="../src/assets/Logo.png" alt="Logo" width={150} />
+                                        <img src={imag} alt="Logo" width={150} />
                                     </span>
                                     <span className='nav-btns flex-coln'>
                                         <Link to={'/'}>

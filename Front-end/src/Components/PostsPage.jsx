@@ -9,6 +9,8 @@ import { FilePenLine, MessageCircle, SendHorizonalIcon } from 'lucide-react';
 import { ThumbsUp } from 'lucide-react';
 import EditPost from './EditPost';
 import Cookies from 'js-cookies'
+import imag from '../assets/Logo.png'
+
 
 
 function PostsPage() {
@@ -24,7 +26,7 @@ function PostsPage() {
     const id = Cookies.getItem('Id')
     const token = Cookies.getItem('token')
     const [userName, setUserName] = useState([])
-// 
+    // 
 
 
 
@@ -105,7 +107,7 @@ function PostsPage() {
 
     return (
         <>
-            {loading  ? (
+            {loading ? (
                 <div className='loading'>
                     <BarLoader color='#33f740' height={6} width={200} />
                 </div>
@@ -115,50 +117,65 @@ function PostsPage() {
                     <div>
                         <header className='flex-coln bg'>
                             <span className='logo-post'>
-                                <img src='../src/assets/Logo.png' alt='Logo' width={150} />
+                                <img src={imag} alt='Logo' width={150} />
                             </span>
-                            <span className='nav-btns flex-coln'>
+                            <span className='flex-coln'>
                                 <Link to={'/'}>
-                                    <button>Home</button>
+                                    <button className="bg-[#7ee982] border-none w-32 text-white py-2 px-4 text-center no-underline inline-block text-base cursor-pointer rounded-md">
+                                        Home
+                                    </button>
                                 </Link>
                                 <Link to={'/news'}>
-                                    <button>News</button>
+                                    <button className="bg-[#7ee982] border-none w-32 text-white py-2 px-4 text-center no-underline inline-block text-base cursor-pointer rounded-md">
+                                        News
+                                    </button>
                                 </Link>
                                 <Link to={'/products'}>
-                                    <button>Products</button>
+                                    <button className="bg-[#7ee982] border-none w-32 text-white py-2 px-4 text-center no-underline inline-block text-base cursor-pointer rounded-md">
+                                        Products
+                                    </button>
                                 </Link>
                                 <Link to={'/videos'}>
-                                    <button>Videos</button>
+                                    <button className="bg-[#7ee982] border-none w-32 text-white py-2 px-4 text-center no-underline inline-block text-base cursor-pointer rounded-md">
+                                        Videos
+                                    </button>
                                 </Link>
                                 {login ? (
                                     <Link to={'/profile'}>
-                                        <button className='profile-btn'>Profile</button>
+                                        <button className="bg-[#7ee982] border-none w-32 text-white py-2 px-4 text-center no-underline inline-block text-base cursor-pointer rounded-md">
+                                            Profile
+                                        </button>
                                     </Link>
                                 ) : (
                                     <Link to={'/signUp'}>
-                                        <button>Sign In</button>
+                                        <button className="bg-[#7ee982] border-none w-32 text-white py-2 px-4 text-center no-underline inline-block text-base cursor-pointer rounded-md">
+                                            Sign In
+                                        </button>
                                     </Link>
                                 )}
-
-                                <button onClick={() => setModal(true)}>New Post</button>
+                                <Link>
+                                    <button onClick={() => setModal(true)} className="bg-[#7ee982] border-none w-32 text-white py-2 px-4 text-center no-underline inline-block text-base cursor-pointer rounded-md">
+                                        New Post
+                                    </button>
+                                </Link>
                             </span>
                         </header>
                     </div>
 
                     {/* MAIN CONTAINER  */}
 
-                    <div className='right-post'>
-                        <h1 className='post-head'>Community</h1>
+                    <div className='right-post '>
+                        <h1 className='post-head font-serif'>Community</h1>
                         <div className='posts-flex'>
                             {login ? (
                                 posts && posts.map((data, index) => (
                                     <div className='main-post' key={index}>
                                         <div className='card card-post'>
-                                            <div className='flex-card'>
+                                            <div className='flex-card '>
                                                 <span>
                                                     <img src={data.img} alt='Image' width={'600px'} />
                                                 </span>
-                                                <span className='card-data'>
+                                                <span className='card-data font-serif'>
                                                     <h2>{data.title}</h2>
                                                     <br />
                                                     <p>{data.description}</p>

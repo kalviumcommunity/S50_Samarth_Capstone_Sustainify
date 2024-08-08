@@ -2,10 +2,13 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import Cookies from 'js-cookies'
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function AdditionalInfo() {
   const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
@@ -29,16 +32,16 @@ function AdditionalInfo() {
       const { id, token } = res.data;
       Cookies.setItem("token", token);
       Cookies.setItem("Id", id);
-      alert("Posted");
-      nextPage()
+      toast.success('Registered successfully!',{
+        onClose: () => navigate('/posts')
+      });
     } catch (error) {
       console.error(error);
+      toast.error('There was an error');
     }
   };
 
-  const nextPage = () =>{
-    Navigate('/posts')
-  }
+
 
   // Function to convert image file to URL
   const covertImage = (file) => {
@@ -83,6 +86,7 @@ function AdditionalInfo() {
                   <button type="button" className="bg-red-500 text-white font-semibold py-2 px-8 rounded-lg shadow-md mr-4">Back</button>
                 </Link>
                 <button type="submit" className="bg-blue-500 text-white font-semibold py-2 px-8 rounded-lg shadow-md">Save</button>
+                <ToastContainer />
               </div>
             </form>
           </div>

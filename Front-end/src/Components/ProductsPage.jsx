@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import loginCheck from './LoginTokenCheck'
 import { ArrowUpRight, ChevronDown } from 'lucide-react';
 import BarLoader from "react-spinners/BarLoader";
+import imag from '../assets/Logo.png'
+
 
 
 function ProductsPage() {
@@ -37,7 +39,7 @@ function ProductsPage() {
 
                     <header className=' bg flex'>
                         <span className='logo'>
-                            <img src="../src/assets/Logo.png" alt="Logo" width={150} />
+                            <img src={imag} alt="Logo" width={150} />
                         </span>
                         <span className='nav-btns'>
                             <Link to={'/'}>

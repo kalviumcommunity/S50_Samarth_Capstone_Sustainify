@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './CSS/ContactUs.css'
+import imag from '../assets/Logo.png'
 import loginCheck from './LoginTokenCheck'
 
 
@@ -16,29 +17,29 @@ function ContactUsPage() {
 
                 <header className='flex bg'>
                     <span className='logo'>
-                        <img src="../src/assets/Logo.png" alt="Logo" width={150} />
+                        <img src={imag} alt="Logo" width={150} />
                     </span>
                     <span className='nav-btns'>
                         <Link to={'/'}>
-                            <button>Home</button>
+                            <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">Home</button>
                         </Link>
                         <Link to={'/news'} >
-                            <button>News</button>
+                            <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">News</button>
                         </Link>
                         <Link to={'/posts'}>
-                            <button>Posts</button>
+                            <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">Posts</button>
                         </Link>
                         <Link to={'/products'}>
-                            <button>Products</button>
+                            <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">Products</button>
                         </Link>
-                        <button>Videos</button>
+                        <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">Videos</button>
                         {login ?
                             <Link to={'/profile'}>
-                                <button>Profile</button>
+                                <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">Profile</button>
                             </Link>
                             :
                             <Link to={'/signUp'}>
-                                <button>Sign In</button>
+                                <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">Sign In</button>
                             </Link>
                         }
                     </span>
