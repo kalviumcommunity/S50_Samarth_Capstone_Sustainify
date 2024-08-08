@@ -5,7 +5,6 @@ import './CSS/Landing.css';
 // import axios from 'axios';
 import Cookies from 'js-cookies';
 
-
 function SignUpPage() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();

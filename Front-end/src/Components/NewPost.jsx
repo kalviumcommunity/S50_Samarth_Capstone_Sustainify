@@ -1,14 +1,18 @@
 import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { X } from 'lucide-react';
 import Cookies from 'js-cookies'
 import './CSS/NewPost.css';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function NewPost({ onClose }) {
     const mdlRef = useRef();
     const { register, handleSubmit, setValue } = useForm();
     const [selectedOption, setSelectedOption] = useState('file');
+    const navigate = useNavigate();
 
     // CREATING A REF FOR THE MODAL 
     const closeModal = (e) => {
@@ -48,7 +52,9 @@ function NewPost({ onClose }) {
                 console.log(postData);
                 const res = await axios.post('https://s50-samarth-capstone-sustainify.onrender.com/post', postData);
                 console.log(res.data);
-                alert("Posted")
+                toast.success('Posted 👍', {
+                    onClose: () => navigate('/posts')
+                });
 
             }
             else if (selectedOption === 'url') {
@@ -60,7 +66,9 @@ function NewPost({ onClose }) {
                 };
                 const res = await axios.post('https://s50-samarth-capstone-sustainify.onrender.com/post', postData);
                 console.log(res.data);
-                alert("Posted")
+                toast.success('Posted 👍', {
+                    onClose: () => navigate('/posts')
+                });
             }
             onClose();
         }
@@ -141,6 +149,11 @@ function NewPost({ onClose }) {
                             <button type="submit">Post</button>
                         </div>
                     </form>
+                    <ToastContainer
+                        position="top-center"
+                        autoClose={2000}
+                        theme="light"
+                        transition:Bounce />
                 </div>
             </div>
         </div>

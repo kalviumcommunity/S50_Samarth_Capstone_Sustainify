@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './CSS/Landing.css'
 import { Link } from 'react-router-dom';
 import loginCheck from './LoginTokenCheck'
+import imag from '../assets/Logo.png'
 
 
 function LandingPage() {
@@ -16,36 +17,35 @@ function LandingPage() {
 
             <header className='flex'>
                 <span className='logo'>
-                    <img src="../src/assets/Logo.png" alt="Logo" width={150} />
+                    <img src={imag} alt="Logo" width={150} />
                 </span>
-                <span className='nav-btns'>
+                <span className="nav-btns w-[780px]">
                     <Link to={'/news'}>
-                        <button>News</button>
+                        <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">News</button>
                     </Link>
                     <Link to={'/posts'}>
-                        <button>Posts</button>
+                        <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">Posts</button>
                     </Link>
                     <Link to={'/products'}>
-                        <button>Products</button>
+                        <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">Products</button>
                     </Link>
                     <Link to={'/videos'}>
-                        <button>Videos</button>
+                        <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">Videos</button>
                     </Link>
                     <Link to={'/contact'}>
-                        <button>Contact Us</button>
+                        <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">Contact Us</button>
                     </Link>
                     {login ?
                         <Link to={'/profile'}>
-                            <button>Profile</button>
+                            <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">Profile</button>
                         </Link>
                         :
                         <Link to={'/signUp'}>
-                            <button>Sign In</button>
+                            <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">Sign In</button>
                         </Link>
                     }
-
-
                 </span>
+
             </header>
 
             {/* MAIN CONTAINER  */}

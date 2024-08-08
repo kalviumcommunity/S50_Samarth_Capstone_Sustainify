@@ -5,6 +5,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookies';
 import axios from 'axios';
 import BarLoader from "react-spinners/BarLoader";
+import imag from '../assets/Logo.png'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function ProfilePage() {
     const navigate = useNavigate();
@@ -19,8 +23,11 @@ function ProfilePage() {
         Cookies.removeItem('Id');
         Cookies.removeItem('userData');
 
-        alert("Logged-Out Successfully.");
-        navigate('/');
+        toast.success('Logged-Out Successfully.!', {
+            onClose: () => navigate('/')
+        });
+
+        // navigate('/');
     };
 
     // TOGGLE TO SHOW THE USER'S POSTS
@@ -86,26 +93,26 @@ function ProfilePage() {
                     <div className='bg profile-bg'>
                         <header className='flex'>
                             <span className='logo-post'>
-                                <img src="../src/assets/Logo.png" alt="Logo" width={150} />
+                                <img src={imag} alt="Logo" width={150} />
                             </span>
                             <span className='nav-btns'>
                                 <Link to={'/'}>
-                                    <button>Home</button>
+                                    <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">Home</button>
                                 </Link>
                                 <Link to={'/news'}>
-                                    <button>News</button>
+                                    <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">News</button>
                                 </Link>
                                 <Link to={'/posts'}>
-                                    <button>Posts</button>
+                                    <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">Posts</button>
                                 </Link>
                                 <Link to={'/products'}>
-                                    <button>Products</button>
+                                    <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">Products</button>
                                 </Link>
                                 <Link to={'/videos'}>
-                                    <button>Videos</button>
+                                    <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">Videos</button>
                                 </Link>
                                 <Link to={'/contact'} >
-                                    <button>Contact Us</button>
+                                    <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">Contact Us</button>
                                 </Link>
                             </span>
                         </header>
@@ -113,6 +120,11 @@ function ProfilePage() {
                     {/* MAIN CONTAINER  */}
                     <div className='profile'>
                         <div className='left-profile'>
+                            <ToastContainer
+                                position="top-center"
+                                autoClose={2000}
+                                theme="light"
+                                transition:Bounce />
                             <div>
                                 <img src={userInfo.img} alt="" />
                                 <h1 className='font-bold mt-1'>{userInfo.userName}</h1>

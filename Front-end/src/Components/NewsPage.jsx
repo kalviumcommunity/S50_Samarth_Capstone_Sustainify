@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import './CSS/News.css'
 import loginCheck from './LoginTokenCheck'
 import BarLoader from "react-spinners/BarLoader";
+import imag from '../assets/Logo.png'
+
 
 
 function NewsPage() {
@@ -47,7 +49,7 @@ function NewsPage() {
 
           <header className='flex'>
             <span className='logo'>
-              <img src="../src/assets/Logo.png" alt="Logo" width={150} />
+              <img src={imag} alt="Logo" width={150} />
             </span>
             <span className='nav-btns'>
               <Link to={'/'}>

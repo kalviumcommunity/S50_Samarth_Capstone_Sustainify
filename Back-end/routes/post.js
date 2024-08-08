@@ -5,7 +5,6 @@ const router = express.Router();
 const mongoose = require('mongoose');
 
 
-
 // GET REQUEST 
 router.get('/', async (req, res) => {
     try {
@@ -17,33 +16,32 @@ router.get('/', async (req, res) => {
     }
 })
 
-
 // GET REQUEST FOR SPEACIFIC POST
 router.get('/:id', async (req, res) => {
     const id = req.params.id;
     try {
         const data = await posts.findById(id);
-        console.log(data)
+        // console.log(data)
         res.status(200).json(data);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 });
 
-// // GET USERNAME BY USER ID
-// router.get('/userName/:id', async (req, res) => {
-//     try {
-//         const userId = req.params.id;
-//         const userData = await user.findById(userId);
-//         const postIds = userData.posts;
-//         const userPosts = await posts.find({ _id: { $in: postIds } });
+// GET USERNAME BY USER ID
+router.get('/userName/:id', async (req, res) => {
+    try {
+        const userId = req.params.id;
+        const userData = await user.findById(userId);
+        const postIds = userData.posts;
+        const userPosts = await posts.find({ _id: { $in: postIds } });
 
-//         res.status(200).json(userPosts);
-//     } catch (error) {
-//         console.error('Error fetching user posts:', error);
-//         res.status(500).json({ message: 'Internal server error' });
-//     }
-// });
+        res.status(200).json(userPosts);
+    } catch (error) {
+        console.error('Error fetching user posts:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
 
 // POST REQUEST 
 router.post('/', async (req, res) => {
@@ -108,8 +106,6 @@ router.put('/like/:id', async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
-
-
 
 // POST REQUEST FOR COMMENTS SECTION
 router.post('/comments/:id', async (req, res) => {

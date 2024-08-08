@@ -31,8 +31,7 @@
 }
 
 
-.nav-btns {
-    /* border: 1px solid red; */
+/* .nav-btns {
     width: 780px;
 }
 
@@ -52,7 +51,7 @@
     border: 1px solid rgba(0, 0, 0, 0.1);
     padding: 0% 1.45%;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
+} */
 
 .container h1 {
     font-size: 60px;
