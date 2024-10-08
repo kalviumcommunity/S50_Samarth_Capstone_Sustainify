@@ -15,16 +15,17 @@ connectDB();
 app.use(cors({
     origin: [
         "https://s50-samarth-capstone-sustainify.onrender.com",
-        "https://precious-marshmallow-630587.netlify.app"
+        "https://precious-marshmallow-630587.netlify.app",
+        "http://localhost:5173",
     ],
     credentials: true
 }));
 
 
+app.use(cookieParser());
 app.use(express.json({ limit: '10mb' }));
 app.use("/user", userRouter)
 app.use("/post", postRouter)
-app.use(cookieParser());
 app.get('/protected', isLoggedIn, (req, res) => {
     const accessToken = req.cookies.accessToken;
     res.send(`Hello ${req.user.displayName}, Access Token: ${accessToken}`);
