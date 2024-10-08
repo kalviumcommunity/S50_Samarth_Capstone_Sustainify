@@ -49,7 +49,7 @@ function AdditionalInfo() {
       Cookies.setItem("Id", id);
 
       // Show success toast
-      toast.update(loadingToast, { render: 'Registered successfully!', type: 'success', isLoading: false, autoClose: 2000 });
+      toast.update(loadingToast, { render: 'Registered successfully!', type: 'success', isLoading: false, autoClose: 1000 });
 
       // Navigate after the toast shows
       setTimeout(() => {
