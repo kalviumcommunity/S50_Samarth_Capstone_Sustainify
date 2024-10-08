@@ -12,14 +12,16 @@ const cookieParser = require('cookie-parser');
 
 
 connectDB();
-app.use(cors(
-    {
-        origin: "http://localhost:5173",
-        credentials: true
-    }
-))
+app.use(cors({
+    origin: [
+        "https://s50-samarth-capstone-sustainify.onrender.com",
+        "https://nimble-smakager-347f97.netlify.app" 
+    ],
+    credentials: true
+}));
 
-app.use(express.json())
+
+app.use(express.json({ limit: '10mb' })); 
 app.use("/user", userRouter)
 app.use("/post", postRouter)
 app.use(cookieParser());
@@ -27,6 +29,7 @@ app.get('/protected', isLoggedIn, (req, res) => {
     const accessToken = req.cookies.accessToken;
     res.send(`Hello ${req.user.displayName}, Access Token: ${accessToken}`);
 });
+
 
 
 
@@ -46,7 +49,7 @@ app.get('/google', (req, res) => {
 })
 
 app.get('/auth/google',
-    passport.authenticate('google', { scope: ['email', 'profile'] }) 
+    passport.authenticate('google', { scope: ['email', 'profile'] })
 )
 
 app.get('/google/callback',
@@ -56,9 +59,9 @@ app.get('/google/callback',
     }),
     (req, res) => {
         console.log(req.user)
-        const accessToken = req.user.accessToken; 
+        const accessToken = req.user.accessToken;
         res.cookie('accessToken', accessToken, { maxAge: 900000, httpOnly: true });
-        res.redirect('/protected'); 
+        res.redirect('/protected');
     }
 );
 
@@ -66,11 +69,6 @@ app.get('/google/callback',
 app.get('/auth/failure', (req, res) => {
     res.send("something went worng")
 })
-
-app.get('/protected', isLoggedIn, (req, res) => {
-    const accessToken = req.cookies.accessToken;
-    res.send(`Hello ${req.user.displayName}, Access Token: ${accessToken}`);
-});
 
 
 app.get('/logout', (req, res) => {

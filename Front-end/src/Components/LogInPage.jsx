@@ -10,12 +10,12 @@ function LogInPage() {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState({ userName: '', password: '' });
-    const [loading, setLoading] = useState(false);  // New loading state
+    const [loading, setLoading] = useState(false);  
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        setLoading(true);  // Set loading to true when the request starts
+        e.preventDefault()
+        setLoading(true);  
 
         try {
             const res = await axios.post('https://s50-samarth-capstone-sustainify.onrender.com/user/login', { userName, password });

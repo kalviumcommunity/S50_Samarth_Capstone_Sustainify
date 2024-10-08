@@ -96,9 +96,7 @@ function ProfilePage() {
                                 <img src={imag} alt="Logo" width={150} />
                             </span>
                             <span className='nav-btns'>
-                                <Link to={'/'}>
-                                    <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">Home</button>
-                                </Link>
+                                
                                 <Link to={'/news'}>
                                     <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">News</button>
                                 </Link>
