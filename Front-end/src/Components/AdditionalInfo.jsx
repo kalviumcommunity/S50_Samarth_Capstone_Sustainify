@@ -11,12 +11,21 @@ function AdditionalInfo() {
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
+    const file = data.proPic[0];
+    const maxFileSize = 5 * 1024 * 1024; // 5 MB limit
+
+    // Validate file size
+    if (file.size > maxFileSize) {
+      toast.error('File size exceeds 5 MB limit.');
+      return;
+    }
+
     try {
-      const formData = new FormData();
-      formData.append("image", data.proPic[0]);
-      const imgURL = await covertImage(data.proPic[0]);
+      // Convert the image to a URL
+      const imgURL = await covertImage(file);
 
       const userData = JSON.parse(Cookies.getItem('userData'));
+      console.log(userData, "hi");
 
       const combinedData = {
         ...userData,
@@ -27,19 +36,33 @@ function AdditionalInfo() {
         number: data.number
       };
 
+      console.log(combinedData); // Debug the data being sent
+
+      // Show loading toast before the request
+      const loadingToast = toast.loading('Submitting your data...');
+
       const res = await axios.post('https://s50-samarth-capstone-sustainify.onrender.com/user', combinedData);
       console.log(res.data);
+
       const { id, token } = res.data;
       Cookies.setItem("token", token);
       Cookies.setItem("Id", id);
-      toast.success('Registered successfully!',{
-        onClose: () => navigate('/posts')
-      });
+
+      // Show success toast
+      toast.update(loadingToast, { render: 'Registered successfully!', type: 'success', isLoading: false, autoClose: 2000 });
+
+      // Navigate after the toast shows
+      setTimeout(() => {
+        navigate('/posts');
+      }, 2000); // Delay navigation to allow the toast to show
+
     } catch (error) {
       console.error(error);
       toast.error('There was an error');
     }
   };
+
+
 
 
 

@@ -64,20 +64,43 @@ function PostsPage() {
     }, []);
 
     // CODE FOR INCREASING THE LIKE COUNTER FOR THE POSTS 
+    // const increaseLikes = async (postId) => {
+    //     try {
+    //         const response = await axios.put(`http://localhost:2001/post/like/${postId}`, { id });
+    //         // console.log(response.status)
+    //         // console.log(updatedLikes,"These r the no.of likes")
+    //         if (response.status === 400) {
+    //             alert("U have already liked the post🎉🎉")
+    //         }
+    //         window.location.reload()
+    //     }
+    //     catch (error) {
+    //         console.error('Error increasing likes:', error);
+    //     }
+    // };
+
     const increaseLikes = async (postId) => {
         try {
             const response = await axios.put(`http://localhost:2001/post/like/${postId}`, { id });
-            // console.log(response.status)
-            // console.log(updatedLikes,"These r the no.of likes")
-            if (response.status === 400) {
-                alert("U have already liked the post🎉🎉")
+
+            if (response.status === 200) {
+                // Update the local state to reflect the new likes count
+                const updatedPosts = posts.map(post => {
+                    if (post._id === postId) {
+                        const newLikes = post.likes.includes(id)
+                            ? post.likes.filter(likeId => likeId !== id) // Remove like if already liked
+                            : [...post.likes, id]; // Add like if not already liked
+                        return { ...post, likes: newLikes };
+                    }
+                    return post;
+                });
+                setPosts(updatedPosts);
             }
-            window.location.reload()
-        }
-        catch (error) {
+        } catch (error) {
             console.error('Error increasing likes:', error);
         }
     };
+
 
     // TOGGLE TO SEE THE COMMENTS AND POST COMMENTS
     const handleCommentSectionOpen = (postId) => {
@@ -120,11 +143,11 @@ function PostsPage() {
                                 <img src={imag} alt='Logo' width={150} />
                             </span>
                             <span className='flex-coln'>
-                                <Link to={'/'}>
-                                    <button className="bg-[#7ee982] border-none w-32 text-white py-2 px-4 text-center no-underline inline-block text-base cursor-pointer rounded-md">
-                                        Home
-                                    </button>
-                                </Link>
+                                {/* <Link to={'/'}> */}
+                                {/* <button className="bg-[#7ee982] border-none w-32 text-white py-2 px-4 text-center no-underline inline-block text-base cursor-pointer rounded-md"> */}
+                                {/* Home */}
+                                {/* </button> */}
+                                {/* </Link> */}
                                 <Link to={'/news'}>
                                     <button className="bg-[#7ee982] border-none w-32 text-white py-2 px-4 text-center no-underline inline-block text-base cursor-pointer rounded-md">
                                         News

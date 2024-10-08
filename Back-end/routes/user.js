@@ -66,7 +66,7 @@ const generateToken = (tokenData) => {
     try {
         const token = jwt.sign(tokenData, secretCode);
         return token;
-    
+
     }
     catch (err) {
         console.log('Token generation failed:', err);
@@ -139,6 +139,38 @@ router.post('/', async (req, res) => {
         res.status(400).json({ message: err.message });
     }
 });
+
+// PUT request 
+router.put('/:id', verifyToken, async (req, res) => {
+    try {
+        const userId = req.params.id;
+        console.log('User ID:', userId);  // Log the user ID
+
+        // Find user by ID
+        const existingUser = await user.findById(userId);
+        if (!existingUser) {
+            console.log('User not found');  // Log when user is not found
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Update user fields
+        if (req.body.name) existingUser.name = req.body.name;
+        if (req.body.email) existingUser.email = req.body.email;
+        if (req.body.number) existingUser.number = req.body.number;
+        if (req.body.bio) existingUser.bio = req.body.bio;
+        if (req.body.goal) existingUser.goal = req.body.goal;
+        if (req.body.img) existingUser.img = req.body.img;
+
+        // Save updated user
+        await existingUser.save();
+        res.status(200).json({ message: 'Profile updated successfully', user: existingUser });
+    } catch (error) {
+        console.error('Error updating profile:', error);
+        res.status(500).json({ message: 'Server error', error: error.message || error });
+    }
+});
+
+
 
 
 module.exports = router;
