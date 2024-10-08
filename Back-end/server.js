@@ -15,13 +15,13 @@ connectDB();
 app.use(cors({
     origin: [
         "https://s50-samarth-capstone-sustainify.onrender.com",
-        "https://nimble-smakager-347f97.netlify.app" 
+        "https://precious-marshmallow-630587.netlify.app"
     ],
     credentials: true
 }));
 
 
-app.use(express.json({ limit: '10mb' })); 
+app.use(express.json({ limit: '10mb' }));
 app.use("/user", userRouter)
 app.use("/post", postRouter)
 app.use(cookieParser());
