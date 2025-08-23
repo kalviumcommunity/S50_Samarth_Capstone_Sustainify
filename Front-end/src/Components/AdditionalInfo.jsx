@@ -11,60 +11,61 @@ function AdditionalInfo() {
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    const file = data.proPic[0];
-    const maxFileSize = 5 * 1024 * 1024; // 5 MB limit
+    const file = data.proPic?.[0];
+    const maxFileSize = 5 * 1024 * 1024;
 
-    // Validate file size
-    if (file.size > maxFileSize) {
+    if (file && file.size > maxFileSize) {
       toast.error('File size exceeds 5 MB limit.');
       return;
     }
 
     try {
-      // Convert the image to a URL
-      const imgURL = await covertImage(file);
+      const imgURL = file ? await covertImage(file) : '';
 
-      const userData = JSON.parse(Cookies.getItem('userData'));
-      console.log(userData, "hi");
+      // check if google signup
+      const credential = localStorage.getItem('g_credential');
+      let payload;
+      let endpoint;
 
-      const combinedData = {
-        ...userData,
-        ...data,
-        img: imgURL,
-        bio: data.bio,
-        goal: data.goals,
-        number: data.number
-      };
+      if (credential) {
+        // Google signup flow
+        payload = {
+          credential,
+          bio: data.bio || '',
+          goal: data.goals || '',
+          number: data.number || '',
+          img: imgURL
+        };
+        endpoint = 'http://localhost:2001/auth/google/signup';
+      } else {
+        // Normal signup flow
+        const userData = JSON.parse(Cookies.getItem('userData'));
+        payload = {
+          ...userData,
+          bio: data.bio || '',
+          goal: data.goals || '',
+          number: data.number || '',
+          img: imgURL
+        };
+        endpoint = 'https://s50-samarth-capstone-sustainify.onrender.com/user';
+      }
 
-      console.log(combinedData); // Debug the data being sent
-
-      // Show loading toast before the request
       const loadingToast = toast.loading('Submitting your data...');
 
-      const res = await axios.post('https://s50-samarth-capstone-sustainify.onrender.com/user', combinedData);
-      console.log(res.data);
+      const res = await axios.post(endpoint, payload);
 
-      const { id, token } = res.data;
+      const { token, user, id } = res.data;
       Cookies.setItem("token", token);
-      Cookies.setItem("Id", id);
+      Cookies.setItem("Id", user?._id || id);
 
-      // Show success toast
-      toast.update(loadingToast, { render: 'Registered successfully!', type: 'success', isLoading: false, autoClose: 2000 });
+      toast.update(loadingToast, { render: 'Registered successfully!', type: 'success', isLoading: false, autoClose: 1500 });
 
-      // Navigate after the toast shows
-      setTimeout(() => {
-        navigate('/posts');
-      }, 2000); // Delay navigation to allow the toast to show
-
+      setTimeout(() => navigate('/posts'), 1200);
     } catch (error) {
       console.error(error);
       toast.error('There was an error');
     }
   };
-
-
-
-
 
   // Function to convert image file to URL
   const covertImage = (file) => {

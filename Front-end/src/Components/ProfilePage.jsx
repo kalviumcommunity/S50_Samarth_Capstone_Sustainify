@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function ProfilePage() {
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [toggle, setToggle] = useState(false);
     const [userInfo, setUserInfo] = useState('');
     const [userPost, setUserPosts] = useState([]);
@@ -56,8 +56,8 @@ function ProfilePage() {
             }
         })
             .then(response => {
-                console.log(token)
-                console.log("hii", response.data)
+                // console.log(token)        
+                // console.log("hii", response.data)
                 setUserInfo(response.data);
                 setLoading(false);
             })
@@ -96,7 +96,7 @@ function ProfilePage() {
                                 <img src={imag} alt="Logo" width={150} />
                             </span>
                             <span className='nav-btns'>
-                                
+
                                 <Link to={'/news'}>
                                     <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">News</button>
                                 </Link>
@@ -165,10 +165,12 @@ function ProfilePage() {
                             </div>
                             <div className='flex-space w-72 mt-10'>
                                 <div className='disPost'>
-                                    <button className='flex-space' onClick={showPosts}>
-                                        See posts
-                                        {toggle ? <ChevronsUp /> : <ChevronsDown />}
-                                    </button>
+                                    <a href="#link">
+                                        <button className='flex-space' onClick={showPosts}>
+                                            See posts
+                                            {toggle ? <ChevronsUp /> : <ChevronsDown />}
+                                        </button>
+                                    </a>
                                 </div>
 
                                 <div className='flex log-out' onClick={deleteToken}>
@@ -179,13 +181,13 @@ function ProfilePage() {
                         </div>
                     </div>
                     {/* POST PART */}
-                    <div className='posts' >
+                    <div className='posts' id='link' >
                         <div>
                             {
                                 toggle ?
                                     <div>
                                         {userPost && userPost.map((data, index) => (
-                                            <div className='main-post' key={index}>
+                                            <div className='main-post mb-96 ml-64 ' key={index}>
                                                 <div className='card card-post'>
                                                     <div className='flex-card'>
                                                         <span>

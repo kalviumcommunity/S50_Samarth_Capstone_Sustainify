@@ -7,15 +7,13 @@ function LoginTokenCheck() {
 
     useEffect(() => {
         const token = Cookies.getItem('token');
-        const accessToken = Cookies.getItem('accessToken')
-        // const token2 = Cookies.getItem('connect.sid')
-        // console.log(accessToken)
-        if(token){
+        const userData = Cookies.getItem('userData ');
+        // const accessToken = Cookies.getItem('accessToken')
+
+        if(token || userData){
             setLogin(true);
-            // console.log(token2)
         }
         else {
-            // console.log(token2)
             setLogin(false);
         }
     },[])
