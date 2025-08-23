@@ -38,10 +38,10 @@ app.use(cookieParser());
 app.use(express.json({ limit: '10mb' }));
 app.use("/user", userRouter)
 app.use("/post", postRouter)
-app.get('/protected', isLoggedIn, (req, res) => {
-    const accessToken = req.cookies.accessToken;
-    res.send(`Hello ${req.user.displayName}, Access Token: ${accessToken}`);
-});
+// app.get('/protected', isLoggedIn, (req, res) => {
+//     const accessToken = req.cookies.accessToken;
+//     res.send(`Hello ${req.user.displayName}, Access Token: ${accessToken}`);
+// });
 
 
 
