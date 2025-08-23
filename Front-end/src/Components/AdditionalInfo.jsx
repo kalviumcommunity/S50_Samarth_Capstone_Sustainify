@@ -58,6 +58,12 @@ function AdditionalInfo() {
       Cookies.setItem("token", token);
       Cookies.setItem("Id", user?._id || id);
 
+      Cookies.setItem("Id", id);
+
+      // Show success toast
+      toast.update(loadingToast, { render: 'Registered successfully!', type: 'success', isLoading: false, autoClose: 1000 });
+
+
       toast.update(loadingToast, { render: 'Registered successfully!', type: 'success', isLoading: false, autoClose: 1500 });
 
       setTimeout(() => navigate('/posts'), 1200);
