@@ -1,5 +1,5 @@
-### Sustainify
-    -  A step towards betterment of our Earth
+# Sustainify
+### -  A step towards betterment of our Earth
 	
 Documentation
 

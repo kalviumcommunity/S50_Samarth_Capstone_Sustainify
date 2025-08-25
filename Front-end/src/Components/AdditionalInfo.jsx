@@ -30,9 +30,7 @@ function AdditionalInfo() {
 
     try {
       const imgURL = file ? await covertImage(file) : "";
-
-      // ✅ Instead of always checking localStorage first,
-      // detect if user is Google signup OR manual signup
+      
       let payload;
       let endpoint;
 
@@ -80,6 +78,14 @@ function AdditionalInfo() {
         isLoading: false,
         autoClose: 1500,
       });
+      Cookies.setItem("Id", id);
+
+      // Show success toast
+      toast.update(loadingToast, { render: 'Registered successfully!', type: 'success', isLoading: false, autoClose: 1000 });
+
+
+      toast.update(loadingToast, { render: 'Registered successfully!', type: 'success', isLoading: false, autoClose: 1500 });
+
 
       setTimeout(() => navigate("/posts"), 1200);
     } catch (error) {
