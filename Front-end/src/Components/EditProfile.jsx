@@ -30,7 +30,8 @@ const EditProfile = () => {
     })
       .then(response => {
         const userData = response.data;
-        // Set state with user data
+
+        
         setName(userData.name || '');
         setEmail(userData.email || '');
         setPhone(userData.phone || '');
@@ -49,8 +50,8 @@ const EditProfile = () => {
 
     // Validate required fields
     if (!name || !email) {
-        alert('Name and email are required.');
-        return;
+      alert('Name and email are required.');
+      return;
     }
 
     const formData = new FormData();
@@ -60,7 +61,7 @@ const EditProfile = () => {
     formData.append('bio', bio);
     formData.append('goals', goals);
     if (profilePicture) {
-        formData.append('profilePicture', profilePicture);
+      formData.append('profilePicture', profilePicture);
     }
 
     const token = Cookies.getItem('token');
@@ -68,30 +69,27 @@ const EditProfile = () => {
 
     // Update user data
     axios.put(`https://s50-samarth-capstone-sustainify.onrender.com/user/${userID}`, formData, {
-        headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'multipart/form-data',
-        }
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      }
     })
-    .then(response => {
+      .then(response => {
         console.log('Profile updated successfully:', response.data);
-        // Optionally reset form fields here
-        // navigate to profile page
-        navigate('/profile'); 
-    })
-    .catch(error => {
+        navigate('/profile');
+      })
+      .catch(error => {
         console.error('Error updating profile:', error);
-        // Display a user-friendly error message
         alert('Failed to update profile. Please try again.');
-    });
-};
+      });
+  };
 
   const handleFileChange = (e) => {
     setProfilePicture(e.target.files[0]);
   };
 
   if (loading) {
-    return <div className='loading text-green-600'>Loading...</div>; // You can implement a more sophisticated loading state if needed
+    return <div className='loading text-green-600'>Loading...</div>;
   }
 
   return (

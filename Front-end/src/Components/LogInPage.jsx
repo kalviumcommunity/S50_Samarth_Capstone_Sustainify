@@ -29,7 +29,7 @@ function LogInPage() {
             Cookies.set("token", token);
             Cookies.set("Id", user._id);
 
-            toast.success('🦄 Successfully Logged-In!', {
+            toast.success('Successfully Logged-In!', {
                 onClose: () => navigate('/posts')
             });
             setErrors({ userName: '', password: '' });

@@ -20,7 +20,7 @@ function LandingPage() {
                 <nav className="flex items-center gap-6 text-gray-600 font-medium z-1">
                     <Link to="/contact" className="group relative">
                         <span className="relative cursor-pointer transition-colors duration-300 group-hover:text-[#7dff9c]">
-                            Contact
+                            Contact us
                             <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[#7dff9c] transition-all duration-300 group-hover:w-full"></span>
                         </span>
                     </Link>

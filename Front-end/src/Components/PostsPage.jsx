@@ -5,91 +5,50 @@ import './CSS/PostsPage.css';
 import NewPost from './NewPost';
 import loginCheck from './LoginTokenCheck';
 import BarLoader from 'react-spinners/BarLoader';
-import { FilePenLine, MessageCircle, SendHorizonalIcon } from 'lucide-react';
-import { ThumbsUp } from 'lucide-react';
+import { FilePenLine, MessageCircle, SendHorizonalIcon, ThumbsUp } from 'lucide-react';
 import EditPost from './EditPost';
-import Cookies from 'js-cookies'
-import imag from '../assets/Logo.png'
-
-
+import Cookies from 'js-cookies';
+import imag from '../assets/Logo.png';
 
 function PostsPage() {
     const [posts, setPosts] = useState([]);
     const [showModal, setModal] = useState(false);
     const [displayMod, setMod] = useState(false);
     const login = loginCheck();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [toggle, setToggle] = useState({});
-    const [comment, setComment] = useState(' ')
-    const [postId, setID] = useState(' ')
-    const id = Cookies.getItem('Id')
-    const token = Cookies.getItem('token')
-    const [userName, setUserName] = useState([])
-    // 
+    const [comment, setComment] = useState('');
+    const [postId, setID] = useState('');
+    const id = Cookies.getItem('Id');
+    const token = Cookies.getItem('token');
 
-
-
-    // CODE TO GET DATA FROM THE DATA AND STORING IN STATE USING useState()
     useEffect(() => {
         setLoading(true);
         axios.get('https://s50-samarth-capstone-sustainify.onrender.com/post')
             .then((res) => {
-                const postsData = res.data;
-                setPosts(postsData);
+                setPosts(res.data);
                 setLoading(false);
             })
             .catch((err) => {
                 console.log('Error fetching the data', err);
                 setLoading(false);
             });
-
-        // const fetchUserData = async () => {
-        //     try {
-        //         const res =  axios.get('http://localhost:2001/user/verify', {
-        //             headers: {
-        //                 Authorization: `Bearer ${token}`
-        //             }
-        //         })
-        //         setUserName(res.data)
-        //         console.log(res.data)
-        //     }
-        //     catch (err) {
-        //         console.error('Error fetching user data:', err);
-        //     }
-        // };
-
-        // fetchUserData();
-
     }, []);
-
-    // CODE FOR INCREASING THE LIKE COUNTER FOR THE POSTS 
-    // const increaseLikes = async (postId) => {
-    //     try {
-    //         const response = await axios.put(`http://localhost:2001/post/like/${postId}`, { id });
-    //         // console.log(response.status)
-    //         // console.log(updatedLikes,"These r the no.of likes")
-    //         if (response.status === 400) {
-    //             alert("U have already liked the post🎉🎉")
-    //         }
-    //         window.location.reload()
-    //     }
-    //     catch (error) {
-    //         console.error('Error increasing likes:', error);
-    //     }
-    // };
 
     const increaseLikes = async (postId) => {
         try {
-            const response = await axios.put(`http://localhost:2001/post/like/${postId}`, { id });
+            const response = await axios.put(
+                `http://localhost:2001/post/like/${postId}`,
+                { id }
+            );
 
             if (response.status === 200) {
-                // Update the local state to reflect the new likes count
-                const updatedPosts = posts.map(post => {
+                const updatedPosts = posts.map((post) => {
                     if (post._id === postId) {
                         const newLikes = post.likes.includes(id)
-                            ? post.likes.filter(likeId => likeId !== id) // Remove like if already liked
-                            : [...post.likes, id]; // Add like if not already liked
+                            ? post.likes.filter((likeId) => likeId !== id)
+                            : [...post.likes, id];
                         return { ...post, likes: newLikes };
                     }
                     return post;
@@ -101,178 +60,205 @@ function PostsPage() {
         }
     };
 
-
-    // TOGGLE TO SEE THE COMMENTS AND POST COMMENTS
     const handleCommentSectionOpen = (postId) => {
         setID(postId);
-        setToggle({ ...toggle, [postId]: !toggle[postId] });
+        setToggle((prev) => ({ ...prev, [postId]: !prev[postId] }));
     };
 
-
-    // CODE FOR POSTING COMMENTS 
     const handleCommentSubmit = async () => {
         try {
             if (postId) {
-                await axios.post(`http://localhost:2001/post/comments/${postId}`, { comment, id });
-                const updatedPosts = posts.map(post => post._id === postId ? { ...post, comments: [...post.comments, { text: comment }] } : post);
+                await axios.post(
+                    `http://localhost:2001/post/comments/${postId}`,
+                    { comment, id }
+                );
+
+                const updatedPosts = posts.map((post) =>
+                    post._id === postId
+                        ? { ...post, comments: [...post.comments, { text: comment }] }
+                        : post
+                );
                 setPosts(updatedPosts);
-                setComment(' ');
-            }
-            else {
+                setComment('');
+            } else {
                 console.error('No postId available for comment submission');
             }
-        }
-        catch (error) {
-            console.log("Erorr handling requset", error)
+        } catch (error) {
+            console.log('Error handling request', error);
         }
     };
-
 
     return (
         <>
             {loading ? (
-                <div className='loading'>
-                    <BarLoader color='#33f740' height={6} width={200} />
+                <div className="loading">
+                    <BarLoader color="#33f740" height={6} width={200} />
                 </div>
             ) : (
-                <div className='flex-post'>
+                <div className="flex-post">
                     {/* HEADER */}
                     <div>
-                        <header className='flex-coln bg'>
-                            <span className='logo-post'>
-                                <img src={imag} alt='Logo' width={150} />
-                            </span>
-                            <span className='flex-coln'>
-                                {/* <Link to={'/'}> */}
-                                {/* <button className="bg-[#7ee982] border-none w-32 text-white py-2 px-4 text-center no-underline inline-block text-base cursor-pointer rounded-md"> */}
-                                {/* Home */}
-                                {/* </button> */}
-                                {/* </Link> */}
-                                <Link to={'/news'}>
-                                    <button className="bg-[#7ee982] border-none w-32 text-white py-2 px-4 text-center no-underline inline-block text-base cursor-pointer rounded-md">
-                                        News
-                                    </button>
-                                </Link>
-                                <Link to={'/products'}>
-                                    <button className="bg-[#7ee982] border-none w-32 text-white py-2 px-4 text-center no-underline inline-block text-base cursor-pointer rounded-md">
+                        <header className="min-full fixed bg-green-800">
+                            <img src={imag} alt="Logo" width={150} className="m-4" />
+                            <span className="flex-coln mt-14">
+                                <Link to="/products">
+                                    <button className="bg-[#7ee982] border-none w-32 text-white py-2 px-4 rounded-md">
                                         Products
                                     </button>
                                 </Link>
-                                <Link to={'/videos'}>
-                                    <button className="bg-[#7ee982] border-none w-32 text-white py-2 px-4 text-center no-underline inline-block text-base cursor-pointer rounded-md">
+                                <Link to="/videos">
+                                    <button className="bg-[#7ee982] border-none w-32 text-white py-2 px-4 rounded-md">
                                         Videos
                                     </button>
                                 </Link>
                                 {login ? (
-                                    <Link to={'/profile'}>
-                                        <button className="bg-[#7ee982] border-none w-32 text-white py-2 px-4 text-center no-underline inline-block text-base cursor-pointer rounded-md">
+                                    <Link to="/profile">
+                                        <button className="bg-[#7ee982] border-none w-32 text-white py-2 px-4 rounded-md">
                                             Profile
                                         </button>
                                     </Link>
                                 ) : (
-                                    <Link to={'/signUp'}>
-                                        <button className="bg-[#7ee982] border-none w-32 text-white py-2 px-4 text-center no-underline inline-block text-base cursor-pointer rounded-md">
+                                    <Link to="/signUp">
+                                        <button className="bg-[#7ee982] border-none w-32 text-white py-2 px-4 rounded-md">
                                             Sign In
                                         </button>
                                     </Link>
                                 )}
-                                <Link>
-                                    <button onClick={() => setModal(true)} className="bg-[#7ee982] border-none w-32 text-white py-2 px-4 text-center no-underline inline-block text-base cursor-pointer rounded-md">
-                                        New Post
-                                    </button>
-                                </Link>
+                                <button
+                                    onClick={() => setModal(true)}
+                                    className="bg-[#7ee982] border-none w-32 text-white py-2 px-4 ml-9  rounded-md"
+                                >
+                                    New Post
+                                </button>
                             </span>
                         </header>
                     </div>
 
-                    {/* MAIN CONTAINER  */}
+                    {/* MAIN CONTAINER */}
+                    <div className="right-post">
+                        <h1 className="text-[35px] text-green-800 italic font-bold ml-64 mt-4">
+                            Community
+                        </h1>
 
-                    <div className='right-post '>
-                        <h1 className='post-head font-serif'>Community</h1>
-                        <div className='posts-flex'>
+                        <div className="space-y-8 mt-6 mr-20">
                             {login ? (
-                                posts && posts.map((data, index) => (
-                                    <div className='main-post' key={index}>
-                                        <div className='card card-post'>
-                                            <div className='flex-card '>
-                                                <span>
-                                                    <img src={data.img} alt='Image' width={'600px'} />
-                                                </span>
-                                                <span className='card-data font-serif'>
-                                                    <h2>{data.title}</h2>
-                                                    <br />
-                                                    <p>{data.description}</p>
-                                                </span>
-                                            </div>
-                                            <div className='post-btns flex-space'>
-                                                <div className='like'>
-                                                    <button className={`flex-space like ${data.likes.includes(Cookies.getItem('Id')) ? 'liked' : 'not-liked'}`} onClick={() => increaseLikes(data._id)}>
-                                                        <ThumbsUp />
-                                                        <p>{data.likes.length || 0}</p>
-                                                    </button>
-                                                </div>
-                                                <div>
-                                                    <button className='flex-space' onClick={() => setMod(true)}>
-                                                        <FilePenLine />
-                                                    </button>
-                                                </div>
-                                                <div className='comms-btn'>
-                                                    <button className='flex-space' onClick={() => handleCommentSectionOpen(data._id)} >
-                                                        <MessageCircle />
-                                                    </button>
-                                                </div>
-                                            </div>
+                                posts.map((data) => (
+                                    <div
+                                        key={data._id}
+                                        className="bg-white rounded-xl shadow-md border border-green-200 overflow-hidden hover:shadow-lg transition w-[700px]"
+                                    >
+                                        <img
+                                            src={data.img}
+                                            alt="Post"
+                                            className="w-[700px]"
+                                        />
+                                        <div className="p-5">
+                                            <h3 className="font-bold text-xl text-green-700">
+                                                {data.title}
+                                            </h3>
+                                            <p className="text-gray-600 mt-2">
+                                                {data.description}
+                                            </p>
 
-                                            {/* COMMENTS PART */}
+                                            <div className="flex justify-between items-center mt-4">
+                                                {/* Like Button */}
+                                                <button
+                                                    onClick={() => increaseLikes(data._id)}
+                                                    className={`flex items-center gap-1 ${
+                                                        data.likes.includes(id)
+                                                            ? "text-white font-bold bg-red-500 p-1 rounded-[11px]"
+                                                            : "text-green-600 hover:text-red-500"
+                                                    }`}
+                                                >
+                                                    <ThumbsUp size={18} />{" "}
+                                                    {data.likes.length} Likes
+                                                </button>
 
-                                            <div>
-                                                {toggle[data._id] && (
-                                                    <div className='comments'>
-                                                        <div>
-                                                            <h1>Comments Section</h1>
-                                                            {data.comments.map((comment, index) => (
-                                                                <div key={index} className='cmt'>
-                                                                    <div className='flex-space '>
-                                                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYapQGaZ_WSo2ev2rgJz7XIAS0st_kr7Vy8Eyz_9ay59X-98tH3uVMEjmPxw&s" alt="" />
-                                                                        <h2>Name</h2>
-                                                                    </div>
-                                                                    <div className='comment-text'>
-                                                                        {comment.text}
-                                                                    </div>
-
-                                                                </div>
-                                                            ))}
-                                                        </div>
-                                                        <div className='flex-space comms-write'>
-                                                            <input
-                                                                type="text" placeholder='Write your comment here...' value={comment} onChange={(e) => setComment(e.target.value)}
-                                                            />
-                                                            <button onClick={handleCommentSubmit} >
-                                                                <SendHorizonalIcon />
-                                                            </button>
-                                                        </div>
-                                                    </div>
+                                                {/* Edit Button only if owner */}
+                                                {id === data.createdBy && (
+                                                    <button
+                                                        onClick={() => {
+                                                            setID(data._id);
+                                                            setMod(true);
+                                                        }}
+                                                        className="flex items-center gap-1 text-gray-600 hover:text-black"
+                                                    >
+                                                        <FilePenLine size={18} /> Edit
+                                                    </button>
                                                 )}
+
+                                                {/* Comments Button */}
+                                                <button
+                                                    onClick={() =>
+                                                        handleCommentSectionOpen(data._id)
+                                                    }
+                                                    className="flex items-center gap-1 text-gray-600 hover:text-green-600"
+                                                >
+                                                    <MessageCircle size={18} /> Comments
+                                                </button>
                                             </div>
+
+                                            {/* COMMENTS SECTION */}
+                                            {toggle[data._id] && (
+                                                <div className="mt-4 border-t pt-4">
+                                                    <h1 className="font-semibold text-lg">
+                                                        Comments
+                                                    </h1>
+                                                    {data.comments.map((comment, index) => (
+                                                        <div
+                                                            key={index}
+                                                            className="mt-2 p-2 border rounded-md shadow-sm"
+                                                        >
+                                                            <div className="flex items-center w-20">
+                                                                <img
+                                                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYapQGaZ_WSo2ev2rgJz7XIAS0st_kr7Vy8Eyz_9ay59X-98tH3uVMEjmPxw&s"
+                                                                    alt="avatar"
+                                                                    className="w-7 h-7 rounded-full"
+                                                                />
+                                                                <h2 className="text-sm font-bold">
+                                                                    Name
+                                                                </h2>
+                                                            </div>
+                                                            <div className="mt-1 text-gray-700">
+                                                                {comment.text}
+                                                            </div>
+                                                        </div>
+                                                    ))}
+
+                                                    {/* Comment Input */}
+                                                    <div className="flex items-center gap-2 mt-3">
+                                                        <input
+                                                            type="text"
+                                                            placeholder="Write your comment..."
+                                                            value={comment}
+                                                            onChange={(e) =>
+                                                                setComment(e.target.value)
+                                                            }
+                                                            className="flex-1 border border-gray-300 p-2 rounded"
+                                                        />
+                                                        <button
+                                                            onClick={handleCommentSubmit}
+                                                            className="text-gray-700 hover:text-green-600"
+                                                        >
+                                                            <SendHorizonalIcon />
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 ))
                             ) : (
-                                <div>
-                                    {navigate('/login')}
-                                </div>
+                                navigate('/login')
                             )}
-
-
                         </div>
-
                     </div>
 
-                    {/* NEW POST MODAL  */}
+                    {/* NEW POST MODAL */}
                     {showModal && <NewPost onClose={() => setModal(false)} />}
 
-                    {/* EDIT POST MODAL  */}
-                    {displayMod && <EditPost onClose={() => setMod(false)} />}
+                    {/* EDIT POST MODAL */}
+                    {displayMod && <EditPost postId={postId} onClose={() => setMod(false)} />}
                 </div>
             )}
         </>
