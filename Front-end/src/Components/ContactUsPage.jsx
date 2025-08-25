@@ -1,87 +1,109 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import './CSS/ContactUs.css'
-import imag from '../assets/Logo.png'
-import loginCheck from './LoginTokenCheck'
-
+import React from "react";
+import { Link } from "react-router-dom";
+import imag from "../assets/Logo.png";
+import loginCheck from "./LoginTokenCheck";
 
 function ContactUsPage() {
-
     const login = loginCheck();
 
     return (
-        <>
-            <div>
-
-                {/* HEADER  */}
-
-                <header className='flex bg'>
-                    <span className='logo'>
-                        <img src={imag} alt="Logo" width={150} />
-                    </span>
-                    <span className='nav-btns'>
-                        <Link to={'/'}>
-                            <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">Home</button>
-                        </Link>
-                        <Link to={'/news'} >
-                            <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">News</button>
-                        </Link>
-                        <Link to={'/posts'}>
-                            <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">Posts</button>
-                        </Link>
-                        <Link to={'/products'}>
-                            <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">Products</button>
-                        </Link>
-                        <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">Videos</button>
-                        {login ?
-                            <Link to={'/profile'}>
-                                <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">Profile</button>
-                            </Link>
-                            :
-                            <Link to={'/signUp'}>
-                                <button className="mx-2 items-center border-none text-white font-normal text-lg cursor-pointer px-6 hover:border hover:px-1.45 hover:shadow-lg hover:rounded-md ">Sign In</button>
-                            </Link>
-                        }
-                    </span>
-                </header>
-
-                {/* MAIN CONTAINER  */}
-
-                <div className='con-flex'>
-                    <div className='left'>
-                        <h1 className='head'>Contact Us</h1>
-                        <form className='con-bg'>
-                            <div className='inputs'>
-                                <label>User Name</label>
-                                <input type="text" name='userName' />
-                            </div>
-                            <div className='inputs'>
-                                <label>E-Mail</label>
-                                <input type="text" name='email' />
-                            </div>
-                            <div className='inputs'>
-                                <label>Subject</label>
-                                <input type="text" name='Subject' />
-                            </div>
-                            <div className='inputs'>
-                                <label >Query</label>
-                                <textarea name="query" cols="30" rows="5"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div className='right'>
-                        <h1 className='head'>Credits</h1>
-                        <div className='con-bg'>
-                            <p>Sustainify is a website who's sole motive is to create awareness among the people of Sustainible living preserve the environment for the future
-                                generations, thsi means using the natural resources without affecting the amount of natural resources required for the future.
-                            </p>
-                        </div>
-                    </div>
+        <div className="min-h-screen bg-gradient-to-t from-green-100 to-green-800">
+            {/* HEADER */}
+            <header className="flex items-center justify-between px-16 mt-[-10px] backdrop-blur-md shadow-md">
+                <div className="flex items-center">
+                    <img src={imag} alt="Logo" width={150} />
                 </div>
 
-            </div>
-        </>
-    )
+                <nav className="flex items-center gap-6 text-white font-medium">
+                    <Link to="/" className="hover:underline hover:underline-offset-4">
+                        Home
+                    </Link>
+
+                    {login ? (
+                        <Link to="/profile">
+                            <button className="ml-4 px-5 py-1 bg-green-700 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 hover:scale-105 transition">
+                                Profile
+                            </button>
+                        </Link>
+                    ) : (
+                        <Link to="/signUp">
+                            <button className="ml-4 px-5 py-1 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-green-700 hover:scale-105 transition">
+                                Sign In
+                            </button>
+                        </Link>
+                    )}
+                </nav>
+            </header>
+
+            {/* MAIN */}
+            <main className="flex flex-col lg:flex-row justify-center items-start gap-12 px-10 py-14 flex-grow">
+                {/* LEFT CREDITS */}
+                <div className="flex-1 bg-white rounded-2xl shadow-xl p-8 max-w-lg">
+                    <h1 className="text-3xl font-bold text-green-700 mb-6">Credits</h1>
+                    <p className="text-gray-700 leading-relaxed">
+                        <span className="font-semibold text-green-700">Sustainify</span> is
+                        a website whose sole motive is to create awareness among people
+                        about sustainable living and preserving the environment for future
+                        generations. This means using natural resources responsibly without
+                        compromising their availability for the future.
+                    </p>
+                </div>
+
+                {/* RIGHT FORM */}
+                <div className="flex-1 bg-white rounded-2xl shadow-xl p-8 max-w-md">
+                    <h1 className="text-3xl font-bold text-green-700 mb-6">Contact Us</h1>
+                    <form className="space-y-5">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                User Name
+                            </label>
+                            <input
+                                type="text"
+                                name="userName"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                E-Mail
+                            </label>
+                            <input
+                                type="email"
+                                name="email"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Subject
+                            </label>
+                            <input
+                                type="text"
+                                name="subject"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Query
+                            </label>
+                            <textarea
+                                name="query"
+                                rows="4"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                            ></textarea>
+                        </div>
+                        <button
+                            type="submit"
+                            className="w-full py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 hover:scale-105 transition"
+                        >
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </main>
+        </div>
+    );
 }
 
-export default ContactUsPage
+export default ContactUsPage;

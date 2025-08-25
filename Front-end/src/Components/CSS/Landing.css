@@ -1,0 +1,150 @@
+/* === GLOBAL === */
+/* body, html { */
+  /* margin: 0; */
+  /* padding: 0; */
+  /* font-family: 'Inter', sans-serif; */
+  /* color: #f5fdf5; */
+  /* background: #326c36; */
+/* } */
+
+/* === MAIN WRAPPER === */
+/* .main-container { */
+  /* position: relative; */
+  /* min-height: 100vh; */
+  /* overflow: hidden; */
+/* } */
+
+/* === BACKGROUND OVERLAY === */
+/* .overlay { */
+  /* position: absolute; */
+  /* inset: 0; */
+  /* background: linear-gradient(to bottom right, rgba(20, 40, 20, 0.7), rgba(87, 183, 91, 0.6)); */
+  /* z-index: 0; */
+/* } */
+
+/* === NAVBAR === */
+/* .navbar { */
+  /* position: fixed; */
+  /* top: 0; */
+  /* width: 100%; */
+  /* padding: 15px 50px; */
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  /* background: rgba(20, 40, 20, 0.4); */
+  /* backdrop-filter: blur(12px); */
+  /* z-index: 10; */
+/* } */
+
+/* .nav-btns { */
+  /* display: flex; */
+  /* gap: 25px; */
+  /* align-items: center; */
+/* } */
+
+/* .nav-btns span { */
+  /* color: #e5ffe5; */
+  /* font-weight: 500; */
+  /* cursor: pointer; */
+  /* position: relative; */
+  /* transition: color 0.3s ease; */
+/* } */
+
+/* .nav-btns span:hover { */
+  /* color: #7dff9c; */
+/* } */
+
+/* .nav-btns span::after { */
+  /* content: ''; */
+  /* position: absolute; */
+  /* left: 0; */
+  /* bottom: -4px; */
+  /* height: 2px; */
+  /* width: 0; */
+  /* background: #7dff9c; */
+  /* transition: width 0.3s ease; */
+/* } */
+
+/* .nav-btns span:hover::after { */
+  /* width: 100%; */
+/* } */
+
+/* Sign In/Profile button */
+/* .signin-btn { */
+  /* background: linear-gradient(135deg, #39ae3f, #1b5e20); */
+  /* border: none; */
+  /* color: white; */
+  /* padding: 10px 20px; */
+  /* border-radius: 25px; */
+  /* font-weight: 600; */
+  /* cursor: pointer; */
+  /* transition: transform 0.3s ease, background 0.3s ease; */
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); */
+/* } */
+/*  */
+/* .signin-btn:hover { */
+  /* background: linear-gradient(135deg, #1b5e20, #39ae3f); */
+  /* transform: scale(1.05); */
+/* } */
+
+/* === CONTENT CONTAINER === */
+/* .container { */
+  /* position: relative; */
+  /* z-index: 1; */
+  /* max-width: 850px; */
+  /* margin: 0 auto; */
+  /* padding: 150px 20px 50px; */
+  /* text-align: center; */
+  /* animation: fadeInUp 1.2s ease forwards; */
+/* } */
+
+/* .title { */
+  /* font-size: 4rem; */
+  /* font-weight: 700; */
+  /* color: #7dff9c; */
+  /* margin-bottom: 10px; */
+/* } */
+/*  */
+/* .subtitle { */
+  /* font-size: 1.8rem; */
+  /* color: #a5d6a7; */
+  /* margin-bottom: 25px; */
+/* } */
+/*  */
+/* .description { */
+  /* font-size: 1.05rem; */
+  /* line-height: 1.8; */
+  /* color: #e0f2e0; */
+  /* margin-bottom: 35px; */
+/* } */
+
+/* CTA button */
+/* .cta-btn { */
+  /* background: linear-gradient(135deg, #39ae3f, #1b5e20); */
+  /* color: white; */
+  /* font-size: 1.1rem; */
+  /* font-weight: 600; */
+  /* padding: 15px 40px; */
+  /* border: none; */
+  /* border-radius: 30px; */
+  /* cursor: pointer; */
+  /* transition: transform 0.3s ease, background 0.3s ease; */
+  /* box-shadow: 0 5px 15px rgba(0,0,0,0.3); */
+/* } */
+/*  */
+/* .cta-btn:hover { */
+  /* background: linear-gradient(135deg, #1b5e20, #39ae3f); */
+  /* transform: scale(1.07); */
+/* } */
+
+/* === ANIMATIONS === */
+/* @keyframes fadeInUp { */
+  /* from { */
+    /* opacity: 0; */
+    /* transform: translateY(40px); */
+  /* } */
+  /* to { */
+    /* opacity: 1; */
+    /* transform: translateY(0); */
+  /* } */
+/* } */
