@@ -54,7 +54,7 @@ function LogInPage() {
             const credential = credentialResponse.credential; 
 
             const res = await axios.post(
-                "http://localhost:2001/auth/google/login",
+                "https://s50-samarth-capstone-sustainify.onrender.com/auth/google/login",
                 { credential },
                 { withCredentials: true }
             );
