@@ -39,7 +39,7 @@ function PostsPage() {
     const increaseLikes = async (postId) => {
         try {
             const response = await axios.put(
-                `http://localhost:2001/post/like/${postId}`,
+                `https://s50-samarth-capstone-sustainify.onrender.com/post/like/${postId}`,
                 { id }
             );
 
@@ -69,7 +69,7 @@ function PostsPage() {
         try {
             if (postId) {
                 await axios.post(
-                    `http://localhost:2001/post/comments/${postId}`,
+                    `https://s50-samarth-capstone-sustainify.onrender.com/post/comments/${postId}`,
                     { comment, id }
                 );
 

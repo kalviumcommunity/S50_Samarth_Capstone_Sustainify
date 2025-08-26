@@ -18,7 +18,7 @@ connectDB();
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://nimble-smakager-347f97.netlify.app",
+    "https://gorgeous-moonbeam-6ebdb7.netlify.app",
     "https://s50-samarth-capstone-sustainify.onrender.com"
   ],
   credentials: true

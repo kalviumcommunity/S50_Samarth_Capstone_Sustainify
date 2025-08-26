@@ -58,7 +58,7 @@ function AdditionalInfo() {
           number: data.number || "",
           img: imgURL,
         };
-        endpoint = "http://localhost:2001/auth/google/signup";
+        endpoint = "https://s50-samarth-capstone-sustainify.onrender.com/auth/google/signup";
       } else {
         toast.error("Signup session expired. Please sign up again.");
         return;
